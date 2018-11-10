@@ -1,0 +1,55 @@
+{
+    "name": "WriteFreely",
+    "id": "writefreely",
+    "packaging_format": 1,
+    "description": {
+        "en": "WriteFreely package for YunoHost application."
+    },
+    "version": "0.1",
+    "url": "https://example.com",
+    "license": "free",
+    "maintainer": {
+        "name": "Anmol Sharma",
+        "email": "anmol@datamol.org"
+    },
+    "requirements": {
+        "yunohost": ">= 2.7.14"
+    },
+    "multi_instance": true,
+    "services": [
+        "nginx",
+        "mysql"
+    ],
+    "arguments": {
+        "install" : [
+            {
+                "name": "domain",
+                "type": "domain",
+                "ask": {
+                    "en": "Choose a domain name for WriteFreely",
+                    "fr": "Choisissez un nom de domaine pour WriteFreely"
+                },
+                "example": "example.com"
+            },
+            {
+                "name": "path",
+                "type": "path",
+                "ask": {
+                    "en": "Choose a path for WriteFreely",
+                    "fr": "Choisissez un chemin pour WriteFreely"
+                },
+                "example": "/example",
+                "default": "/example"
+            },
+            {
+                "name": "is_public",
+                "type": "boolean",
+                "ask": {
+                    "en": "Is it a public application?",
+                    "fr": "Est-ce une application publique ?"
+                },
+                "default": true
+            }
+          
+    }
+}
