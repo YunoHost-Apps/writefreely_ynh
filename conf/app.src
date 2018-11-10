@@ -1,5 +1,5 @@
-SOURCE_URL=url of app's source
-SOURCE_SUM=sha256 checksum
+SOURCE_URL=writefreely_0.1_darwin_amd64.tar.gz
+SOURCE_SUM=4f5ddcb9bba2076d8d27e1bdbc0cad02182a8e66e0e7b4cf6ef767a67acd58d8
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true
