@@ -11,7 +11,7 @@ WriteFreely is a beautifully pared-down blogging platform that's simple on the s
 
 Can be run as Single User Blog or Multi User Instance.
 
-Each User canbe limited from 1 to unlimited blogs.
+Each User can be limited from 1 to unlimited blogs.
 
 **Shipped version:** 0.70
 
