@@ -16,12 +16,23 @@ source /usr/share/yunohost/helpers
 app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get $app domain)
+port=$(ynh_app_setting_get $app port)
 path_url=$(ynh_app_setting_get $app path)
 admin=$(ynh_app_setting_get $app admin)
 is_public=$(ynh_app_setting_get $app is_public)
 final_path=$(ynh_app_setting_get $app final_path)
-language=$(ynh_app_setting_get $app language)
+#language=$(ynh_app_setting_get $app language)
+
 db_name=$(ynh_app_setting_get $app db_name)
+single_user=$(ynh_app_setting_get $app single_user)
+site_name=$(ynh_app_setting_get $app site_name)
+site_description=$(ynh_app_setting_get $app site_description)
+open_registration=$(ynh_app_setting_get $app open_registration)
+max_blogs=$(ynh_app_setting_get $app max_blogs)
+federation=$(ynh_app_setting_get $app federation)
+public_stats=$(ynh_app_setting_get $app public_stats)
+private=$(ynh_app_setting_get $app private)
+local_timeline=$(ynh_app_setting_get $app local_timeline)
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
@@ -71,18 +82,18 @@ path_url=$(ynh_normalize_url_path $path_url)
 #=================================================
 # STANDARD UPGRADE STEPS
 #=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-
-# Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source "$final_path"
-
-#=================================================
 # NGINX CONFIGURATION
 #=================================================
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
+
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source "$final_path"
 
 #=================================================
 # UPGRADE DEPENDENCIES
@@ -102,7 +113,7 @@ ynh_system_user_create $app
 #=================================================
 
 # Create a dedicated php-fpm config
-ynh_add_fpm_config
+#ynh_add_fpm_config
 
 #=================================================
 # SPECIFIC UPGRADE
@@ -137,7 +148,7 @@ ynh_add_systemd_config
 #=================================================
 
 # Set permissions on app files
-chown -R root: $final_path
+chown -R $app: $final_path
 
 #=================================================
 # SETUP SSOWAT
@@ -155,3 +166,4 @@ fi
 #=================================================
 
 systemctl reload nginx
+systemctl start "$app"

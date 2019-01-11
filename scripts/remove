@@ -68,6 +68,7 @@ ynh_secure_remove "$final_path"
 
 # Remove the dedicated nginx config
 ynh_remove_nginx_config
+systemctl restart nginx
 
 #=================================================
 # REMOVE PHP-FPM CONFIGURATION

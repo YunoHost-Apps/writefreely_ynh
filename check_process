@@ -6,21 +6,28 @@
 ;; Test complet
 	; Manifest
 		domain="domain.tld"	(DOMAIN)
-		path="/path"	(PATH)
 		admin="john"	(USER)
-		language="fr"
-		is_public=1	(PUBLIC|public=1|private=0)
 		password="pass"
+		is_public=1	(PUBLIC|public=1|private=0)
+		single_user="true"
+		site_name="WriteFreely"
+		site_description="WriteFreely Blogs"
+		open_registration="true"
+		max_blogs="1"
+		federation="true"
+		public_stats="true"
+		private="false"
+		local_timeline="true"		
 	; Checks
 		pkg_linter=1
-		setup_sub_dir=1
+		setup_sub_dir=0
 		setup_root=1
 		setup_nourl=0
 		setup_private=1
 		setup_public=1
 		upgrade=1
 		backup_restore=1
-		multi_instance=1
+		multi_instance=0
 		incorrect_path=1
 		port_already_use=0
 		change_url=0

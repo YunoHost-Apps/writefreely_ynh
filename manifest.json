@@ -15,7 +15,7 @@
     "requirements": {
         "yunohost": ">= 2.7.14"
     },
-    "multi_instance": true,
+    "multi_instance": false,
     "services": [
         "nginx",
         "mysql"
@@ -85,7 +85,7 @@
                     "en": "Choose a description for your WriteFreely instance",
                     "fr": "Choisissez une description pour votre instance WriteFreely"
                 },
-                "default": "WriteFreely Blogs"
+                "default": "WriteFreely_Blogs"
             },
             {
                 "name": "open_registration",
@@ -102,7 +102,7 @@
                     "en": "How many blogs each user can create ?",
                     "fr": "Combien de blogs chaque utilisateur peut créer ?"
                 },
-                "default": "1"
+                "default": "3"
             },
             {
                 "name": "federation",

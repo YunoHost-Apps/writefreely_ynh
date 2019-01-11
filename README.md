@@ -15,9 +15,9 @@ Each User can be limited from 1 to unlimited blogs.
 
 **Shipped version:** 0.70
 
-## Screenshots
+## Licence
 
-![](Link to an screenshot for this app)
+LICENSE GPL-3.0
 
 ## Demo
 
