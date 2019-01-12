@@ -25,8 +25,24 @@ ynh_abort_if_errors
 #=================================================
 
 domain=$YNH_APP_ARG_DOMAIN
-path_url=$YNH_APP_ARG_PATH
+#path_url=$YNH_APP_ARG_PATH
+path_url="/"
+admin=$YNH_APP_ARG_ADMIN
+password=$YNH_APP_ARG_PASSWORD
 is_public=$YNH_APP_ARG_IS_PUBLIC
+#language=$YNH_APP_ARG_LANGUAGE
+single_user=$YNH_APP_ARG_SINGLE_USER
+site_name=$YNH_APP_ARG_SITE_NAME
+site_description=$YNH_APP_ARG_SITE_DESCRIPTION
+open_registration=$YNH_APP_ARG_OPEN_REGISTRATION
+max_blogs=$YNH_APP_ARG_MAX_BLOGS
+federation=$YNH_APP_ARG_FEDERATION
+public_stats=$YNH_APP_ARG_PUBLIC_STATS
+private=$YNH_APP_ARG_PRIVATE
+local_timeline=$YNH_APP_ARG_LOCAL_TIMELINE
+
+
+
 
 ### If it's a multi-instance app, meaning it can be installed several times independently
 ### The id of the app as stated in the manifest is available as $YNH_APP_ID
@@ -54,6 +70,7 @@ path_url=$(ynh_normalize_url_path $path_url)
 
 # Check web path availability
 ynh_webpath_available $domain $path_url
+
 # Register (book) web path
 ynh_webpath_register $app $domain $path_url
 
@@ -63,8 +80,18 @@ ynh_webpath_register $app $domain $path_url
 
 ynh_app_setting_set $app domain $domain
 ynh_app_setting_set $app path $path_url
+ynh_app_setting_set $app admin $admin
 ynh_app_setting_set $app is_public $is_public
-
+#ynh_app_setting_set $app language $language
+ynh_app_setting_set $app single_user $single_user
+ynh_app_setting_set $app site_name $site_name
+ynh_app_setting_set $app site_description $site_description
+ynh_app_setting_set $app open_registration $open_registration
+ynh_app_setting_set $app max_blogs $max_blogs
+ynh_app_setting_set $app federation $federation
+ynh_app_setting_set $app public_stats $public_stats
+ynh_app_setting_set $app private $private
+ynh_app_setting_set $app local_timeline $local_timeline
 
 #=================================================
 # STANDARD MODIFICATIONS
@@ -83,6 +110,18 @@ port=$(ynh_find_port 8095)
 yunohost firewall allow --no-upnp TCP $port 2>&1
 ynh_app_setting_set $app port $port
 
+#=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+
+### `ynh_install_app_dependencies` allows you to add any "apt" dependencies to the package.
+### Those deb packages will be installed as dependencies of this package.
+### If you're not using this helper:
+###		- Remove the section "REMOVE DEPENDENCIES" in the remove script
+###		- As well as the section "REINSTALL DEPENDENCIES" in the restore script
+###		- And the section "UPGRADE DEPENDENCIES" in the upgrade script
+
+#ynh_install_app_dependencies mysql
 
 #=================================================
 # CREATE A MYSQL DATABASE
@@ -113,9 +152,6 @@ ynh_app_setting_set $app final_path $final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source "$final_path"
 
-# Import database schema
-ynh_mysql_connect_as "$db_name" "$db_pwd" "$db_name" < $final_path/schema.sql
-
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
@@ -132,6 +168,123 @@ ynh_add_nginx_config
 # Create a system user
 ynh_system_user_create $app
 
+#=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+
+### `ynh_add_fpm_config` is used to set up a PHP config.
+### You can remove it if your app doesn't use PHP.
+### `ynh_add_fpm_config` will use the files conf/php-fpm.conf and conf/php-fpm.ini
+### If you're not using these lines:
+###		- You can remove these files in conf/.
+###		- Remove the section "BACKUP THE PHP-FPM CONFIGURATION" in the backup script
+###		- Remove also the section "REMOVE PHP-FPM CONFIGURATION" in the remove script
+###		- As well as the section "RESTORE THE PHP-FPM CONFIGURATION" in the restore script
+###		With the reload at the end of the script.
+###		- And the section "PHP-FPM CONFIGURATION" in the upgrade script
+
+# Create a dedicated php-fpm config
+#ynh_add_fpm_config
+
+#=================================================
+# SPECIFIC SETUP
+#=================================================
+# ...
+#=================================================
+
+#=================================================
+# SETUP SYSTEMD
+#=================================================
+
+### `ynh_systemd_config` is used to configure a systemd script for an app.
+### It can be used for apps that use sysvinit (with adaptation) or systemd.
+### Have a look at the app to be sure this app needs a systemd script.
+### `ynh_systemd_config` will use the file conf/systemd.service
+### If you're not using these lines:
+###		- You can remove those files in conf/.
+###		- Remove the section "BACKUP SYSTEMD" in the backup script
+###		- Remove also the section "STOP AND REMOVE SERVICE" in the remove script
+###		- As well as the section "RESTORE SYSTEMD" in the restore script
+###		- And the section "SETUP SYSTEMD" in the upgrade script
+
+# Create a dedicated systemd config
+ynh_add_systemd_config
+
+#=================================================
+# SETUP APPLICATION WITH CURL
+#=================================================
+
+### Use these lines only if the app installation needs to be finalized through
+### web forms. We generally don't want to ask the final user,
+### so we're going to use curl to automatically fill the fields and submit the
+### forms.
+
+# Set right permissions for curl install
+#chown -R $app: $final_path
+
+# Set the app as temporarily public for curl call
+#ynh_app_setting_set $app skipped_uris "/"
+# Reload SSOwat config
+#yunohost app ssowatconf
+
+# Reload Nginx
+#systemctl reload nginx
+
+# Installation with curl
+#ynh_local_curl "/INSTALL_PATH" "key1=value1" "key2=value2" "key3=value3"
+
+# Remove the public access
+#if [ $is_public -eq 0 ]
+#then
+#	ynh_app_setting_delete $app skipped_uris
+#fi
+
+# setup application config
+sudo cp ../conf/config.ini $final_path/config.ini
+
+#=================================================
+# MODIFY A CONFIG FILE
+#=================================================
+
+### `ynh_replace_string` is used to replace a string in a file.
+### (It's compatible with sed regular expressions syntax)
+
+ynh_replace_string "__DBNAME__" "$db_name" "$final_path/config.ini"
+ynh_replace_string "__DBUSER__" "$db_name" "$final_path/config.ini"
+ynh_replace_string "__DBPWD__" "$db_pwd" "$final_path/config.ini"
+ynh_replace_string "__PORT__" "$port" "$final_path/config.ini"
+ynh_replace_string "https://your-writefreely-url-instance.com" "https://$domain$path_url" "$final_path/config.ini"
+ynh_replace_string "__SINGLEUSER__" "$single_user" "$final_path/config.ini"
+ynh_replace_string "__SITENAME__" "$site_name" "$final_path/config.ini"
+ynh_replace_string "__SITEDESCRIPTION__" "$site_description" "$final_path/config.ini"
+ynh_replace_string "__OPENREGISTRATION__" "$open_registration" "$final_path/config.ini"
+ynh_replace_string "__MAXBLOGS__" "$max_blogs" "$final_path/config.ini"
+ynh_replace_string "__FEDERATION__" "$federation" "$final_path/config.ini"
+ynh_replace_string "__PUBLICSTATS__" "$public_stats" "$final_path/config.ini"
+ynh_replace_string "__PRIVATE__" "$private" "$final_path/config.ini"
+ynh_replace_string "__LOCALTIMELINE__" "$local_timeline" "$final_path/config.ini"
+
+#=================================================
+# STORE THE CONFIG FILE CHECKSUM
+#=================================================
+
+### `ynh_store_file_checksum` is used to store the checksum of a file.
+### That way, during the upgrade script, by using `ynh_backup_if_checksum_is_different`,
+### you can make a backup of this file before modifying it again if the admin had modified it.
+
+# Calculate and store the config file checksum into the app settings
+ynh_store_file_checksum "$final_path/config.ini"
+
+#=================================================
+# SPECIFIC SETUP
+#=================================================
+# ...
+#=================================================
+
+( cd $final_path && $final_path/writefreely --init-db )
+( cd $final_path && $final_path/writefreely --gen-keys )
+( cd $final_path && $final_path/writefreely --create-admin $admin:$password )
+
 
 #=================================================
 # GENERIC FINALIZATION
@@ -145,6 +298,40 @@ ynh_system_user_create $app
 
 # Set permissions to app files
 chown -R $app: $final_path
+
+#=================================================
+# SETUP LOGROTATE
+#=================================================
+
+### `ynh_use_logrotate` is used to configure a logrotate configuration for the logs of this app.
+### Use this helper only if there is effectively a log file for this app.
+### If you're not using this helper:
+###		- Remove the section "BACKUP LOGROTATE" in the backup script
+###		- Remove also the section "REMOVE LOGROTATE CONFIGURATION" in the remove script
+###		- As well as the section "RESTORE THE LOGROTATE CONFIGURATION" in the restore script
+###		- And the section "SETUP LOGROTATE" in the upgrade script
+
+# Use logrotate to manage application logfile(s)
+ynh_use_logrotate
+chown -R $app: /var/log/$app/
+
+#=================================================
+# ADVERTISE SERVICE IN ADMIN PANEL
+#=================================================
+
+### `yunohost service add` is a CLI yunohost command to add a service in the admin panel.
+### You'll find the service in the 'services' section of YunoHost admin panel.
+### This CLI command would be useless if the app does not have any services (systemd or sysvinit)
+### If you're not using these lines:
+###		- You can remove these files in conf/.
+###		- Remove the section "REMOVE SERVICE FROM ADMIN PANEL" in the remove script
+###		- As well as the section ADVERTISE SERVICE IN ADMIN PANEL" in the restore script
+
+yunohost service add $app --log "/var/log/$app/APP.log"
+
+# if using yunohost version 3.2 or more in the 'manifest.json', a description can be added
+#yunohost service add $app --description "$app daemon for XXX" --log "/var/log/$app/APP.log"
+
 
 #=================================================
 # SETUP SSOWAT
@@ -162,3 +349,5 @@ fi
 #=================================================
 
 systemctl reload nginx
+systemctl enable "$app"
+systemctl start "$app"

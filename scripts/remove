@@ -24,8 +24,29 @@ final_path=$(ynh_app_setting_get $app final_path)
 #=================================================
 # STANDARD REMOVE
 #=================================================
+# STOP AND REMOVE SERVICE
+#=================================================
 
+# Remove the dedicated systemd config
+ynh_remove_systemd_config
 
+#=================================================
+# REMOVE SERVICE FROM ADMIN PANEL
+#=================================================
+
+# Remove a service from the admin panel, added by `yunohost service add`
+if yunohost service status | grep -q $app
+then
+	echo "Remove $app service"
+	yunohost service remove $app
+fi
+
+#=================================================
+# REMOVE DEPENDENCIES
+#=================================================
+
+# Remove metapackage and its dependencies
+#ynh_remove_app_dependencies
 
 #=================================================
 # REMOVE THE MYSQL DATABASE
@@ -47,7 +68,21 @@ ynh_secure_remove "$final_path"
 
 # Remove the dedicated nginx config
 ynh_remove_nginx_config
+systemctl restart nginx
 
+#=================================================
+# REMOVE PHP-FPM CONFIGURATION
+#=================================================
+
+# Remove the dedicated php-fpm config
+#ynh_remove_fpm_config
+
+#=================================================
+# REMOVE LOGROTATE CONFIGURATION
+#=================================================
+
+# Remove the app-specific logrotate config
+ynh_remove_logrotate
 
 #=================================================
 # CLOSE A PORT
@@ -62,7 +97,17 @@ fi
 #=================================================
 # SPECIFIC REMOVE
 #=================================================
+# REMOVE THE CRON FILE
+#=================================================
 
+# Remove a cron file
+#ynh_secure_remove "/etc/cron.d/$app"
+
+# Remove a directory securely
+#ynh_secure_remove "/etc/$app/"
+
+# Remove the log files
+ynh_secure_remove "/var/log/$app/"
 
 #=================================================
 # GENERIC FINALIZATION

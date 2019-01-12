@@ -27,9 +27,23 @@ ynh_abort_if_errors
 app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get $app domain)
+port=$(ynh_app_setting_get $app port)
 path_url=$(ynh_app_setting_get $app path)
+admin=$(ynh_app_setting_get $app admin)
+is_public=$(ynh_app_setting_get $app is_public)
 final_path=$(ynh_app_setting_get $app final_path)
+
 db_name=$(ynh_app_setting_get $app db_name)
+
+single_user=$(ynh_app_setting_get $app single_user)
+site_name=$(ynh_app_setting_get $app site_name)
+site_description=$(ynh_app_setting_get $app site_description)
+open_registration=$(ynh_app_setting_get $app open_registration)
+max_blogs=$(ynh_app_setting_get $app max_blogs)
+federation=$(ynh_app_setting_get $app federation)
+public_stats=$(ynh_app_setting_get $app public_stats)
+private=$(ynh_app_setting_get $app private)
+local_timeline=$(ynh_app_setting_get $app local_timeline)
 
 #=================================================
 # CHECK IF THE APP CAN BE RESTORED
@@ -80,8 +94,8 @@ chown -R root: $final_path
 # RESTORE THE PHP-FPM CONFIGURATION
 #=================================================
 
-ynh_restore_file "/etc/php5/fpm/pool.d/$app.conf"
-ynh_restore_file "/etc/php5/fpm/conf.d/20-$app.ini"
+#ynh_restore_file "/etc/php5/fpm/pool.d/$app.conf"
+#ynh_restore_file "/etc/php5/fpm/conf.d/20-$app.ini"
 
 #=================================================
 # SPECIFIC RESTORATION
@@ -90,7 +104,7 @@ ynh_restore_file "/etc/php5/fpm/conf.d/20-$app.ini"
 #=================================================
 
 # Define and install dependencies
-ynh_install_app_dependencies deb1 deb2
+#ynh_install_app_dependencies mysql
 
 #=================================================
 # ADVERTISE SERVICE IN ADMIN PANEL
@@ -109,7 +123,7 @@ systemctl enable $app.service
 # RESTORE THE CRON FILE
 #=================================================
 
-ynh_restore_file "/etc/cron.d/$app"
+#ynh_restore_file "/etc/cron.d/$app"
 
 #=================================================
 # RESTORE THE LOGROTATE CONFIGURATION
@@ -123,5 +137,7 @@ ynh_restore_file "/etc/logrotate.d/$app"
 # RELOAD NGINX AND PHP-FPM
 #=================================================
 
-systemctl reload php5-fpm
+#systemctl reload php5-fpm
 systemctl reload nginx
+systemctl start "$app"
+

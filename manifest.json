@@ -15,7 +15,7 @@
     "requirements": {
         "yunohost": ">= 2.7.14"
     },
-    "multi_instance": true,
+    "multi_instance": false,
     "services": [
         "nginx",
         "mysql"
@@ -32,14 +32,26 @@
                 "example": "example.com"
             },
             {
-                "name": "path",
-                "type": "path",
+                "name": "admin",
+                "type": "user",
                 "ask": {
-                    "en": "Choose a path for WriteFreely",
-                    "fr": "Choisissez un chemin pour WriteFreely"
+                    "en": "Choose an admin user",
+                    "fr": "Choisissez l’administrateur"
                 },
-                "example": "/example",
-                "default": "/example"
+                "example": "johndoe"
+            },
+            {
+                "name": "password",
+                "type": "password",
+                "ask": {
+                    "en": "Set the administrator password",
+                    "fr": "Définissez le mot de passe administrateur"
+                },
+                "help": {
+                    "en": "Use the help field to add an information for the admin about this question.",
+                    "fr": "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
+                },
+                "example": "Choose a password"
             },
             {
                 "name": "is_public",
@@ -49,6 +61,84 @@
                     "fr": "Est-ce une application publique ?"
                 },
                 "default": true
+            },
+            {
+                "name": "single_user",
+                "ask": {
+                    "en": "Choose if you want a Single User Blog ?",
+                    "fr": "Souhaitez vous un blog pour un seul utilisateur?"
+                },
+                "choices": ["true", "false"],
+                "default": "true"
+            },
+            {
+                "name": "site_name",
+                "ask": {
+                    "en": "Choose a name for your WriteFreely instance",
+                    "fr": "Choisissez un nom pour votre instance WriteFreely"
+                },
+                "default": "WriteFreely"
+            },
+            {
+                "name": "site_description",
+                "ask": {
+                    "en": "Choose a description for your WriteFreely instance",
+                    "fr": "Choisissez une description pour votre instance WriteFreely"
+                },
+                "default": "WriteFreely_Blogs"
+            },
+            {
+                "name": "open_registration",
+                "ask": {
+                    "en": "Are registrations opened to all ?",
+                    "fr": "Les inscriptions sont t'elles ouvertes ?"
+                },
+                "choices": ["true", "false"],
+                "default": "true"
+            },
+            {
+                "name": "max_blogs",
+                "ask": {
+                    "en": "How many blogs each user can create ?",
+                    "fr": "Combien de blogs chaque utilisateur peut créer ?"
+                },
+                "default": "3"
+            },
+            {
+                "name": "federation",
+                "ask": {
+                    "en": "Is it federation enabled ?",
+                    "fr": "Est-ce une application publique ?"
+                },
+                "choices": ["true", "false"],
+                "default": "true"
+            },
+            {
+                "name": "public_stats",
+                "ask": {
+                    "en": "Are federation stats public ?",
+                    "fr": "Est-ce les statistiques de federation sont publiques ?"
+                },
+                "choices": ["true", "false"],
+                "default": "true"
+            },
+            {
+                "name": "private",
+                "ask": {
+                    "en": "Are the instance metadata private ?",
+                    "fr": "Est-ce les metadatas de l'instance sont privée ?"
+                },
+                "choices": ["true", "false"],
+                "default": "false"
+            },
+            {
+                "name": "local_timeline",
+                "ask": {
+                    "en": "Do you want to add a local timeline ?",
+                    "fr": "Voulez vous afficher une timeline locale ?"
+                },
+                "choices": ["true", "false"],
+                "default": "true"
             }
          ] 
     }
