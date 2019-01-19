@@ -5,7 +5,7 @@
     "description": {
         "en": "WriteFreely package for YunoHost application."
     },
-    "version": "0.1",
+    "version": "0.7.0~ynh1",
     "url": "https://example.com",
     "license": "free",
     "maintainer": {
