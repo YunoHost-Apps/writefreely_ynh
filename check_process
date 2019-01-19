@@ -6,7 +6,7 @@
 ;; Test complet
 	; Manifest
 		domain="domain.tld"	(DOMAIN)
-		admin="admin"
+		admin="john"	(USER)
 		password="pass"
 		is_public=1	(PUBLIC|public=1|private=0)
 		single_user="true"
