@@ -35,11 +35,11 @@ ynh_remove_systemd_config
 #=================================================
 
 # Remove a service from the admin panel, added by `yunohost service add`
-if yunohost service status | grep -q $app
-then
-	echo "Remove $app service"
-	yunohost service remove $app
-fi
+#if yunohost service status | grep -q $app
+#then
+#	echo "Remove $app service"
+#	yunohost service remove $app
+#fi
 
 #=================================================
 # REMOVE DEPENDENCIES

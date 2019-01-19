@@ -110,7 +110,7 @@ chown -R root: $final_path
 # ADVERTISE SERVICE IN ADMIN PANEL
 #=================================================
 
-yunohost service add $app --log "/var/log/$app/APP.log"
+#yunohost service add $app --log "/var/log/$app/APP.log"
 
 #=================================================
 # RESTORE SYSTEMD
