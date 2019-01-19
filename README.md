@@ -13,7 +13,7 @@ Can be run as Single User Blog or Multi User Instance.
 
 Each User can be limited from 1 to unlimited blogs.
 
-**Shipped version:** v0.7.0
+**Shipped version:** v0.7.1
 
 ## Licence
 
