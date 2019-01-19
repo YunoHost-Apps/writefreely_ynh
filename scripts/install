@@ -350,4 +350,4 @@ fi
 
 systemctl reload nginx
 systemctl enable "$app"
-systemctl start "$app"
+systemctl restart "$app"
