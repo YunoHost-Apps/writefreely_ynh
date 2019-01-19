@@ -3,7 +3,8 @@
     "id": "writefreely",
     "packaging_format": 1,
     "description": {
-        "en": "WriteFreely package for YunoHost application."
+        "en": "Write Freely is free and open source software for starting a minimalist, federated blog — or an entire community.",
+        "fr": "Write Freely est un logiciel gratuit et à code source ouvert permettant de créer un blog fédéré minimaliste ou une communauté entière."
     },
     "version": "0.7.0~ynh1",
     "url": "https://example.com",
