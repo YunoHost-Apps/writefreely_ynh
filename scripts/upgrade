@@ -166,4 +166,4 @@ fi
 #=================================================
 
 systemctl reload nginx
-systemctl start "$app"
+systemctl restart "$app"
