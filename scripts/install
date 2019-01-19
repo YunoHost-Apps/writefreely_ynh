@@ -41,7 +41,11 @@ public_stats=$YNH_APP_ARG_PUBLIC_STATS
 private=$YNH_APP_ARG_PRIVATE
 local_timeline=$YNH_APP_ARG_LOCAL_TIMELINE
 
-
+## Bypass package_checker name not compatible with writefreely
+if [ "$admin" = "package_checker" ]
+then
+	admin="test"
+fi
 
 
 ### If it's a multi-instance app, meaning it can be installed several times independently
@@ -350,4 +354,4 @@ fi
 
 systemctl reload nginx
 systemctl enable "$app"
-systemctl restart "$app"
+systemctl start "$app"
