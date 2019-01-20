@@ -1,6 +1,6 @@
 # writefreely_ynh
 
-[![Integration level](https://dash.yunohost.org/integration/writefreely.svg)](https://ci-apps.yunohost.org/jenkins/job/writefreely%20%28Community%29/lastBuild/consoleFull)  
+[![Integration level](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely)
 [![Install WriteFreely with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=writefreely)
 
 > *This package allow you to install WriteFreely quickly and simply on a YunoHost server.  
@@ -39,9 +39,9 @@ Depending of the configuration, the app be used by multiple users
 
 #### Supported architectures
 
-* x86-64b - [![Build Status](https://ci-apps.yunohost.org/jenkins/job/writefreely%20(Community)/badge/icon)](https://ci-apps.yunohost.org/jenkins/job/writefreely%20(Community)/)
-* ~~ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/jenkins/job/writefreely%20(Community)%20(%7EARM%7E)/badge/icon)](https://ci-apps-arm.yunohost.org/jenkins/job/writefreely%20(Community)%20(%7EARM%7E)/)~~
-* Jessie x86-64b - [![Build Status](https://ci-stretch.nohost.me/jenkins/job/writefreely%20(Community)/badge/icon)](https://ci-stretch.nohost.me/jenkins/job/writefreely%20(Community)/)
+* x86-64b - [![Build Status](https://ci-apps.yunohost.org/ci/logs/writefreely%20%28Community%29.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
+* ~~ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/writefreely%20%28Community%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/writefreely/)~~
+* Jessie x86-64b - [![Build Status](https://ci-stretch.nohost.me/ci/logs/writefreely%20%28Community%29.svg)](https://ci-stretch.nohost.me/ci/apps/writefreely/)
 
 ## Limitations
 
