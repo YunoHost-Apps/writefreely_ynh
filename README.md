@@ -35,7 +35,7 @@ How to configure this app: by an admin panel, a plain file with SSH, or any othe
 
 No LDAP and no HTTP auth supported
 
-Depending of the configuration, the app be used by multiple users?
+Depending of the configuration, the app be used by multiple users
 
 #### Supported architectures
 
