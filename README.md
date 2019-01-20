@@ -40,7 +40,7 @@ Depending of the configuration, the app be used by multiple users
 #### Supported architectures
 
 * x86-64b - [![Build Status](https://ci-apps.yunohost.org/jenkins/job/writefreely%20(Community)/badge/icon)](https://ci-apps.yunohost.org/jenkins/job/writefreely%20(Community)/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/jenkins/job/writefreely%20(Community)%20(%7EARM%7E)/badge/icon)](https://ci-apps-arm.yunohost.org/jenkins/job/writefreely%20(Community)%20(%7EARM%7E)/)
+* ~~ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/jenkins/job/writefreely%20(Community)%20(%7EARM%7E)/badge/icon)](https://ci-apps-arm.yunohost.org/jenkins/job/writefreely%20(Community)%20(%7EARM%7E)/)~~
 * Jessie x86-64b - [![Build Status](https://ci-stretch.nohost.me/jenkins/job/writefreely%20(Community)/badge/icon)](https://ci-stretch.nohost.me/jenkins/job/writefreely%20(Community)/)
 
 ## Limitations
