@@ -28,9 +28,9 @@ domain=$YNH_APP_ARG_DOMAIN
 #path_url=$YNH_APP_ARG_PATH
 path_url="/"
 admin=$YNH_APP_ARG_ADMIN
-password=$YNH_APP_ARG_PASSWORD
 is_public=$YNH_APP_ARG_IS_PUBLIC
 #language=$YNH_APP_ARG_LANGUAGE
+password=$YNH_APP_ARG_PASSWORD
 single_user=$YNH_APP_ARG_SINGLE_USER
 site_name=$YNH_APP_ARG_SITE_NAME
 site_description=$YNH_APP_ARG_SITE_DESCRIPTION
@@ -71,9 +71,6 @@ test ! -e "$final_path" || ynh_die "This path already contains a folder"
 
 # Normalize the url path syntax
 path_url=$(ynh_normalize_url_path $path_url)
-
-# Check web path availability
-ynh_webpath_available $domain $path_url
 
 # Register (book) web path
 ynh_webpath_register $app $domain $path_url
@@ -125,7 +122,7 @@ ynh_app_setting_set $app port $port
 ###		- As well as the section "REINSTALL DEPENDENCIES" in the restore script
 ###		- And the section "UPGRADE DEPENDENCIES" in the upgrade script
 
-#ynh_install_app_dependencies mysql
+#ynh_install_app_dependencies deb1 deb2
 
 #=================================================
 # CREATE A MYSQL DATABASE
@@ -243,8 +240,6 @@ ynh_add_systemd_config
 #	ynh_app_setting_delete $app skipped_uris
 #fi
 
-# setup application config
-sudo cp ../conf/config.ini $final_path/config.ini
 
 #=================================================
 # MODIFY A CONFIG FILE
@@ -252,6 +247,9 @@ sudo cp ../conf/config.ini $final_path/config.ini
 
 ### `ynh_replace_string` is used to replace a string in a file.
 ### (It's compatible with sed regular expressions syntax)
+
+# setup application config
+sudo cp ../conf/config.ini $final_path/config.ini
 
 ynh_replace_string "__DBNAME__" "$db_name" "$final_path/config.ini"
 ynh_replace_string "__DBUSER__" "$db_name" "$final_path/config.ini"
@@ -334,7 +332,7 @@ chown -R $app: /var/log/$app/
 #yunohost service add $app --log "/var/log/$app/APP.log"
 
 # if using yunohost version 3.2 or more in the 'manifest.json', a description can be added
-#yunohost service add $app --description "$app daemon for XXX" --log "/var/log/$app/APP.log"
+yunohost service add $app --description "$app daemon for XXX" --log "/var/log/$app/$app.log"
 
 
 #=================================================
@@ -353,5 +351,9 @@ fi
 #=================================================
 
 systemctl reload nginx
-systemctl enable "$app"
-systemctl start "$app"
+
+#=================================================
+# START SERVICE
+#=================================================
+
+yunohost service start $app
