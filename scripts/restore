@@ -27,8 +27,8 @@ ynh_abort_if_errors
 app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get $app domain)
-port=$(ynh_app_setting_get $app port)
 path_url=$(ynh_app_setting_get $app path)
+port=$(ynh_app_setting_get $app port)
 admin=$(ynh_app_setting_get $app admin)
 is_public=$(ynh_app_setting_get $app is_public)
 final_path=$(ynh_app_setting_get $app final_path)
@@ -95,7 +95,6 @@ chown -R root: $final_path
 #=================================================
 
 #ynh_restore_file "/etc/php5/fpm/pool.d/$app.conf"
-#ynh_restore_file "/etc/php5/fpm/conf.d/20-$app.ini"
 
 #=================================================
 # SPECIFIC RESTORATION
@@ -107,17 +106,17 @@ chown -R root: $final_path
 #ynh_install_app_dependencies mysql
 
 #=================================================
-# ADVERTISE SERVICE IN ADMIN PANEL
-#=================================================
-
-#yunohost service add $app --log "/var/log/$app/APP.log"
-
-#=================================================
 # RESTORE SYSTEMD
 #=================================================
 
 ynh_restore_file "/etc/systemd/system/$app.service"
 systemctl enable $app.service
+
+#=================================================
+# ADVERTISE SERVICE IN ADMIN PANEL
+#=================================================
+
+yunohost service add $app --log "/var/log/$app/$app.log"
 
 #=================================================
 # RESTORE THE CRON FILE
@@ -139,5 +138,9 @@ ynh_restore_file "/etc/logrotate.d/$app"
 
 #systemctl reload php5-fpm
 systemctl reload nginx
-systemctl restart "$app"
 
+#=================================================
+# START SERVICE
+#=================================================
+
+yunohost service start $app

@@ -72,6 +72,9 @@ ynh_clean_setup () {
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
 
+# Stop writefreely for upgrade
+yunohost service stop "$app"
+
 #=================================================
 # CHECK THE PATH
 #=================================================
@@ -82,18 +85,18 @@ path_url=$(ynh_normalize_url_path $path_url)
 #=================================================
 # STANDARD UPGRADE STEPS
 #=================================================
-# NGINX CONFIGURATION
-#=================================================
-
-# Create a dedicated nginx config
-ynh_add_nginx_config
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source "$final_path"
+
+#=================================================
+# NGINX CONFIGURATION
+#=================================================
+
+# Create a dedicated nginx config
+ynh_add_nginx_config
 
 #=================================================
 # UPGRADE DEPENDENCIES
@@ -166,4 +169,9 @@ fi
 #=================================================
 
 systemctl reload nginx
-systemctl restart "$app"
+
+#=================================================
+# START SERVICE
+#=================================================
+
+yunohost service start $app
