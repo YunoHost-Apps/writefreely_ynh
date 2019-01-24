@@ -332,7 +332,7 @@ chown -R $app: /var/log/$app/
 #yunohost service add $app --log "/var/log/$app/APP.log"
 
 # if using yunohost version 3.2 or more in the 'manifest.json', a description can be added
-yunohost service add $app --description "$app daemon for XXX" --log "/var/log/$app/$app.log"
+yunohost service add $app --description "$app daemon for WriteFreely" --log "/var/log/$app/$app.log"
 
 
 #=================================================
