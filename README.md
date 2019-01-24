@@ -17,7 +17,7 @@ Each User can be limited from 1 to unlimited blogs.
 
 ## Licence
 
-LICENSE GPL-3.0
+LICENSE AGPL-3.0
 
 ## Demo
 
