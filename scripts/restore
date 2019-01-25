@@ -28,22 +28,8 @@ app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get $app domain)
 path_url=$(ynh_app_setting_get $app path)
-port=$(ynh_app_setting_get $app port)
-admin=$(ynh_app_setting_get $app admin)
-is_public=$(ynh_app_setting_get $app is_public)
 final_path=$(ynh_app_setting_get $app final_path)
-
 db_name=$(ynh_app_setting_get $app db_name)
-
-single_user=$(ynh_app_setting_get $app single_user)
-site_name=$(ynh_app_setting_get $app site_name)
-site_description=$(ynh_app_setting_get $app site_description)
-open_registration=$(ynh_app_setting_get $app open_registration)
-max_blogs=$(ynh_app_setting_get $app max_blogs)
-federation=$(ynh_app_setting_get $app federation)
-public_stats=$(ynh_app_setting_get $app public_stats)
-private=$(ynh_app_setting_get $app private)
-local_timeline=$(ynh_app_setting_get $app local_timeline)
 
 #=================================================
 # CHECK IF THE APP CAN BE RESTORED
