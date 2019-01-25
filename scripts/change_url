@@ -93,6 +93,20 @@ fi
 # ...
 #=================================================
 
+# Stop writefreely for modification
+yunohost service stop "$app"
+
+ynh_replace_string "host              =.*" "host              =https://$new_domain$new_path" "$final_path/config.ini"
+
+# Start writefreely after modification
+yunohost service start $app
+
+### Verify the checksum of a file, stored by `ynh_store_file_checksum` in the install script.
+### And create a backup of this file if the checksum is different. So the file will be backed up if the admin had modified it.
+ynh_backup_if_checksum_is_different "$final_path/config.ini"
+# Recalculate and store the checksum of the file for the next upgrade.
+ynh_store_file_checksum "$final_path/config.ini"
+
 #=================================================
 # GENERIC FINALISATION
 #=================================================
