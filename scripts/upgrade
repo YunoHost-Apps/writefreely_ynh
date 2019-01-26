@@ -122,6 +122,18 @@ ynh_backup_if_checksum_is_different "$final_path/config.ini"
 # Recalculate and store the checksum of the file for the next upgrade.
 ynh_store_file_checksum "$final_path/config.ini"
 
+
+#=================================================
+# CLOSE A PORT
+#=================================================
+
+if yunohost firewall list | grep -q "\- $port$"
+then
+	echo "Close port $port" >&2
+	yunohost firewall disallow TCP $port 2>&1
+fi
+
+
 #=================================================
 # SETUP LOGROTATE
 #=================================================
