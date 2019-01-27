@@ -20,6 +20,12 @@ ynh_clean_setup () {
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
 
+arch=$(uname -m)
+if [[ $arch == arm* ]]
+then
+   ynh_die "WriteFreely not available on Arm"
+fi
+
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
