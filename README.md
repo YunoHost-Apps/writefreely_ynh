@@ -1,4 +1,4 @@
-# writefreely_ynh
+# WriteFreely app for Yunohost
 
 [![Integration level](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely)  
 [![Install WriteFreely with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=writefreely)
