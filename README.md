@@ -40,7 +40,10 @@ Depending of the configuration, the app be used by multiple users
 #### Supported architectures
 
 * x86-64b - [![Build Status](https://ci-apps.yunohost.org/ci/logs/writefreely%20%28Community%29.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/writefreely%20%28Community%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/writefreely/) **Not supported**
 * Jessie x86-64b - [![Build Status](https://ci-stretch.nohost.me/ci/logs/writefreely%20%28Community%29.svg)](https://ci-stretch.nohost.me/ci/apps/writefreely/)
+* Testing x86-64b - [![Build Status](https://ci-apps-unstable.yunohost.org/ci/logs/writefreely%20%28Community%29%20%28testing%29.svg)](https://ci-apps-unstable.yunohost.org/ci/apps/writefreely/)
+* Unstable x86-64b - [![Build Status](https://ci-apps-unstable.yunohost.org/ci/logs/writefreely%20%28Community%29%20%28unstable%29.svg)](https://ci-apps-unstable.yunohost.org/ci/apps/writefreely/)
 
 ## Limitations
 
