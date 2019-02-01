@@ -305,7 +305,7 @@ ynh_store_file_checksum "$final_path/config.ini"
 ### that really need such authorization.
 
 # Set permissions to app files
-chown -R $app: $final_path
+chown -R "$app":"$app" "$final_path"
 
 #=================================================
 # SETUP LOGROTATE
