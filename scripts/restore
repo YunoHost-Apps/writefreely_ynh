@@ -67,14 +67,14 @@ ynh_mysql_connect_as $db_name $db_pwd $db_name < ./db.sql
 #=================================================
 
 # Create the dedicated user (if not existing)
-ynh_system_user_create $app
+ynh_system_user_create "$app" "$final_path"
 
 #=================================================
 # RESTORE USER RIGHTS
 #=================================================
 
 # Restore permissions on app files
-chown -R root: $final_path
+chown -R "$app":"$app" "$final_path"
 
 #=================================================
 # RESTORE THE PHP-FPM CONFIGURATION

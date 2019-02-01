@@ -99,7 +99,7 @@ ynh_add_nginx_config
 #=================================================
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create $app
+ynh_system_user_create "$app" "$final_path"
 
 #=================================================
 # PHP-FPM CONFIGURATION
@@ -155,7 +155,7 @@ ynh_add_systemd_config
 #=================================================
 
 # Set permissions on app files
-chown -R $app: $final_path
+chown -R "$app":"$app" "$final_path"
 
 #=================================================
 # SETUP SSOWAT
