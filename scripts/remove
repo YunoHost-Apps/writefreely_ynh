@@ -6,8 +6,19 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
+source detect_arch
 source _common.sh
+source ynh_systemd_action
 source /usr/share/yunohost/helpers
+
+#=================================================
+# MANAGE APPLICATION NOT COMPATIBLE WITH ARM
+#=================================================
+
+if [ $architecture = "arm" ]
+then
+        ynh_die "WriteFreely not available on Arm"
+fi
 
 #=================================================
 # LOAD SETTINGS
@@ -116,3 +127,9 @@ ynh_secure_remove "/var/log/$app/"
 
 # Delete a system user
 ynh_system_user_delete $app
+
+#=================================================
+# CLEAN TEMPORARY PROCESS AND FILE USED BY ynh_check_starting
+#=================================================
+
+ynh_clean_check_starting

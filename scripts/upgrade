@@ -7,7 +7,18 @@
 #=================================================
 
 source _common.sh
+source detect_arch
+source ynh_systemd_action
 source /usr/share/yunohost/helpers
+
+#=================================================
+# MANAGE APPLICATION NOT COMPATIBLE WITH ARM
+#=================================================
+
+if [ $architecture = "arm" ]
+then
+        ynh_die "WriteFreely not available on Arm"
+fi
 
 #=================================================
 # LOAD SETTINGS
@@ -58,12 +69,16 @@ ynh_backup_before_upgrade
 ynh_clean_setup () {
 	# restore it if the upgrade fails
 	ynh_restore_upgradebackup
+	ynh_clean_check_starting
 }
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
 
-# Stop writefreely for upgrade
-yunohost service stop "$app"
+#=================================================
+# STOP SERVICE
+#=================================================
+
+ynh_systemd_action --action=stop --service_name=$app
 
 #=================================================
 # CHECK THE PATH
@@ -178,4 +193,10 @@ systemctl reload nginx
 # START SERVICE
 #=================================================
 
-yunohost service start $app
+ynh_systemd_action --action=start --service_name=$app
+
+#=================================================
+# CLEAN TEMPORARY PROCESS AND FILE USED BY ynh_check_starting
+#=================================================
+
+ynh_clean_check_starting
