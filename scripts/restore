@@ -108,6 +108,7 @@ chown -R "$app":"$app" "$final_path"
 
 ynh_restore_file "/etc/systemd/system/$app.service"
 systemctl enable $app.service
+systemctl daemon-reload
 
 #=================================================
 # ADVERTISE SERVICE IN ADMIN PANEL
