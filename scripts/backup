@@ -8,6 +8,7 @@
 
 source ../settings/scripts/_common.sh
 source ../settings/scripts/detect_arch
+source ../settings/scripts/ynh_systemd_action
 source /usr/share/yunohost/helpers
 
 #=================================================

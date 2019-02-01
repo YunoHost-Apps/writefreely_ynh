@@ -58,7 +58,6 @@ then
 	admin="test"
 fi
 
-
 ### If it's a multi-instance app, meaning it can be installed several times independently
 ### The id of the app as stated in the manifest is available as $YNH_APP_ID
 ### The instance number is available as $YNH_APP_INSTANCE_NUMBER (equals "1", "2", ...)
@@ -251,7 +250,6 @@ ynh_add_systemd_config
 #	ynh_app_setting_delete $app skipped_uris
 #fi
 
-
 #=================================================
 # MODIFY A CONFIG FILE
 #=================================================
@@ -298,7 +296,6 @@ ynh_store_file_checksum "$final_path/config.ini"
 ( cd $final_path && $final_path/writefreely --gen-keys )
 ( cd $final_path && $final_path/writefreely --create-admin $admin:$password )
 
-
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
@@ -344,7 +341,6 @@ chown -R $app: /var/log/$app/
 
 # if using yunohost version 3.2 or more in the 'manifest.json', a description can be added
 yunohost service add $app --description "$app daemon for WriteFreely" --log "/var/log/$app/$app.log"
-
 
 #=================================================
 # SETUP SSOWAT
