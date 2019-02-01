@@ -127,9 +127,3 @@ ynh_secure_remove "/var/log/$app/"
 
 # Delete a system user
 ynh_system_user_delete $app
-
-#=================================================
-# CLEAN TEMPORARY PROCESS AND FILE USED BY ynh_check_starting
-#=================================================
-
-ynh_clean_check_starting

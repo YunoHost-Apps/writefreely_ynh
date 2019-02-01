@@ -368,9 +368,3 @@ systemctl reload nginx
 #=================================================
 
 ynh_systemd_action --action=start --service_name=$app
-
-#=================================================
-# CLEAN TEMPORARY PROCESS AND FILE USED BY ynh_check_starting
-#=================================================
-
-ynh_clean_check_starting
