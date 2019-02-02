@@ -8,6 +8,8 @@
 
 source detect_arch
 source _common.sh
+source detect_arch
+source ynh_systemd_action
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -25,7 +27,7 @@ fi
 
 ynh_clean_setup () {
 	### Remove this function if there's nothing to clean before calling the remove script.
-	true
+	ynh_clean_check_starting
 }
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
@@ -57,7 +59,6 @@ then
 	admin="test"
 fi
 
-
 ### If it's a multi-instance app, meaning it can be installed several times independently
 ### The id of the app as stated in the manifest is available as $YNH_APP_ID
 ### The instance number is available as $YNH_APP_INSTANCE_NUMBER (equals "1", "2", ...)
@@ -76,7 +77,7 @@ app=$YNH_APP_INSTANCE_NAME
 
 ### If the app uses nginx as web server (written in HTML/PHP in most cases), the final path should be "/var/www/$app".
 ### If the app provides an internal web server (or uses another application server such as uwsgi), the final path should be "/opt/yunohost/$app"
-final_path=/var/www/$app
+final_path="/var/www/$app"
 test ! -e "$final_path" || ynh_die "This path already contains a folder"
 
 # Normalize the url path syntax
@@ -250,7 +251,6 @@ ynh_add_systemd_config
 #	ynh_app_setting_delete $app skipped_uris
 #fi
 
-
 #=================================================
 # MODIFY A CONFIG FILE
 #=================================================
@@ -259,13 +259,13 @@ ynh_add_systemd_config
 ### (It's compatible with sed regular expressions syntax)
 
 # setup application config
-sudo cp ../conf/config.ini $final_path/config.ini
+sudo cp "../conf/config.ini" "$final_path/config.ini"
 
 ynh_replace_string "__DBNAME__" "$db_name" "$final_path/config.ini"
 ynh_replace_string "__DBUSER__" "$db_name" "$final_path/config.ini"
 ynh_replace_string "__DBPWD__" "$db_pwd" "$final_path/config.ini"
 ynh_replace_string "__PORT__" "$port" "$final_path/config.ini"
-ynh_replace_string "https://your-writefreely-url-instance.com" "https://$domain$path_url" "$final_path/config.ini"
+ynh_replace_string "__DOMAIN_URL__" "https://$domain$path_url" "$final_path/config.ini"
 ynh_replace_string "__SINGLEUSER__" "$single_user" "$final_path/config.ini"
 ynh_replace_string "__SITENAME__" "$site_name" "$final_path/config.ini"
 ynh_replace_string "__SITEDESCRIPTION__" "$site_description" "$final_path/config.ini"
@@ -290,13 +290,23 @@ ynh_store_file_checksum "$final_path/config.ini"
 #=================================================
 # SPECIFIC SETUP
 #=================================================
-# ...
+# CREATE LOG FOLDER
 #=================================================
 
-( cd $final_path && $final_path/writefreely --init-db )
-( cd $final_path && $final_path/writefreely --gen-keys )
-( cd $final_path && $final_path/writefreely --create-admin $admin:$password )
+mkdir -p "/var/log/$app"
+chown -R "$app":"$app" "/var/log/$app"
 
+#=================================================
+# MAKE SETUP
+#=================================================
+
+chown -R "$app":"$app" "$final_path"
+
+pushd $final_path
+	sudo -u $app ./writefreely --init-db
+	sudo -u $app ./writefreely --gen-keys
+	sudo -u $app ./writefreely --create-admin "$admin":"$password"
+popd
 
 #=================================================
 # GENERIC FINALIZATION
@@ -325,7 +335,6 @@ chown -R "$app":"$app" "$final_path"
 
 # Use logrotate to manage application logfile(s)
 ynh_use_logrotate
-chown -R $app: /var/log/$app/
 
 #=================================================
 # ADVERTISE SERVICE IN ADMIN PANEL
@@ -343,7 +352,6 @@ chown -R $app: /var/log/$app/
 
 # if using yunohost version 3.2 or more in the 'manifest.json', a description can be added
 yunohost service add $app --description "$app daemon for WriteFreely" --log "/var/log/$app/$app.log"
-
 
 #=================================================
 # SETUP SSOWAT
@@ -366,4 +374,4 @@ systemctl reload nginx
 # START SERVICE
 #=================================================
 
-yunohost service start $app
+ynh_systemd_action --action=start --service_name=$app
