@@ -76,7 +76,7 @@ app=$YNH_APP_INSTANCE_NAME
 
 ### If the app uses nginx as web server (written in HTML/PHP in most cases), the final path should be "/var/www/$app".
 ### If the app provides an internal web server (or uses another application server such as uwsgi), the final path should be "/opt/yunohost/$app"
-final_path=/var/www/$app
+final_path="/var/www/$app"
 test ! -e "$final_path" || ynh_die "This path already contains a folder"
 
 # Normalize the url path syntax
@@ -258,13 +258,13 @@ ynh_add_systemd_config
 ### (It's compatible with sed regular expressions syntax)
 
 # setup application config
-sudo cp ../conf/config.ini $final_path/config.ini
+sudo cp "../conf/config.ini" "$final_path/config.ini"
 
 ynh_replace_string "__DBNAME__" "$db_name" "$final_path/config.ini"
 ynh_replace_string "__DBUSER__" "$db_name" "$final_path/config.ini"
 ynh_replace_string "__DBPWD__" "$db_pwd" "$final_path/config.ini"
 ynh_replace_string "__PORT__" "$port" "$final_path/config.ini"
-ynh_replace_string "https://your-writefreely-url-instance.com" "https://$domain$path_url" "$final_path/config.ini"
+ynh_replace_string "__DOMAIN_URL__" "https://$domain$path_url" "$final_path/config.ini"
 ynh_replace_string "__SINGLEUSER__" "$single_user" "$final_path/config.ini"
 ynh_replace_string "__SITENAME__" "$site_name" "$final_path/config.ini"
 ynh_replace_string "__SITEDESCRIPTION__" "$site_description" "$final_path/config.ini"
@@ -299,9 +299,11 @@ chown -R "$app":"$app" "/var/log/$app"
 # MAKE SETUP
 #=================================================
 
-( cd $final_path && $final_path/writefreely --init-db )
-( cd $final_path && $final_path/writefreely --gen-keys )
-( cd $final_path && $final_path/writefreely --create-admin $admin:$password )
+pushd $final_path
+	sudo -u $app ./writefreely --init-db
+	sudo -u $app ./writefreely --gen-keys
+	sudo -u $app ./writefreely --create-admin "$admin":"$password"
+popd
 
 #=================================================
 # GENERIC FINALIZATION
