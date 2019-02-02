@@ -139,6 +139,8 @@ ynh_system_user_create "$app" "$final_path"
 # MAKE UPGRADE
 #=================================================
 
+chown -R "$app":"$app" "$final_path"
+
 pushd $final_path
 	sudo -u $app ./writefreely --migrate
 popd
