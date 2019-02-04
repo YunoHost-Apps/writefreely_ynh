@@ -23,7 +23,7 @@ Each User can be limited from 1 to unlimited blogs.
 
 ## License
 
-LICENSE AGPL-3.0
+**LICENSE:** AGPL-3.0
 
 ## Demo
 
