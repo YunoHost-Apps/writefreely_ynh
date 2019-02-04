@@ -15,6 +15,12 @@ Each User can be limited from 1 to unlimited blogs.
 
 **Shipped version:** v0.8.1
 
+## Screenshots
+
+![writefreely-screenshot1](https://user-images.githubusercontent.com/30271971/52228565-fa4ab300-28b2-11e9-8983-3eb8cdbc2262.png)
+
+![writefreely-screenshot2](https://user-images.githubusercontent.com/30271971/52228579-00409400-28b3-11e9-8a1c-7625494c8747.png)
+
 ## Licence
 
 LICENSE AGPL-3.0
