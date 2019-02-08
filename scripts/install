@@ -258,7 +258,7 @@ ynh_add_systemd_config
 ### (It's compatible with sed regular expressions syntax)
 
 # setup application config
-sudo cp "../conf/config.ini" "$final_path/config.ini"
+cp "../conf/config.ini" "$final_path/config.ini"
 
 ynh_replace_string "__DBNAME__" "$db_name" "$final_path/config.ini"
 ynh_replace_string "__DBUSER__" "$db_name" "$final_path/config.ini"
