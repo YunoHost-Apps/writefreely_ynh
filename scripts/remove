@@ -91,7 +91,7 @@ ynh_remove_nginx_config
 #=================================================
 
 # Remove the app-specific logrotate config
-ynh_remove_logrotate
+#ynh_remove_logrotate
 
 #=================================================
 # CLOSE A PORT
@@ -116,7 +116,7 @@ fi
 ynh_secure_remove "/etc/$app/"
 
 # Remove the log files
-ynh_secure_remove "/var/log/$app/"
+#ynh_secure_remove "/var/log/$app/"
 
 #=================================================
 # GENERIC FINALIZATION
