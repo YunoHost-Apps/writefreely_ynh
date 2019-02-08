@@ -74,7 +74,7 @@ ynh_mysql_dump_db "$db_name" > db.sql
 # BACKUP LOGROTATE
 #=================================================
 
-ynh_backup "/etc/logrotate.d/$app"
+#ynh_backup "/etc/logrotate.d/$app"
 
 #=================================================
 # BACKUP SYSTEMD
