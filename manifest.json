@@ -65,13 +65,12 @@
             },
             {
                 "name": "single_user",
-                "type": "string",
+                "type": "boolean",
                 "ask": {
                     "en": "Choose if you want a Single User Blog ?",
                     "fr": "Souhaitez vous un blog pour un seul utilisateur?"
                 },
-                "choices": ["true", "false"],
-                "default": "true"
+                "default": true
             },
             {
                 "name": "site_name",
@@ -93,13 +92,12 @@
             },
             {
                 "name": "open_registration",
-                "type": "string",
+                "type": "boolean",
                 "ask": {
                     "en": "Are registrations opened to all ?",
                     "fr": "Les inscriptions sont t'elles ouvertes ?"
                 },
-                "choices": ["true", "false"],
-                "default": "true"
+                "default": true
             },
             {
                 "name": "max_blogs",
@@ -112,43 +110,39 @@
             },
             {
                 "name": "federation",
-                "type": "string",
+                "type": "boolean",
                 "ask": {
                     "en": "Is it federation enabled ?",
                     "fr": "Est-ce une application publique ?"
                 },
-                "choices": ["true", "false"],
-                "default": "true"
+                "default": true
             },
             {
                 "name": "public_stats",
-                "type": "string",
+                "type": "boolean",
                 "ask": {
                     "en": "Are federation stats public ?",
                     "fr": "Est-ce les statistiques de federation sont publiques ?"
                 },
-                "choices": ["true", "false"],
-                "default": "true"
+                "default": true
             },
             {
                 "name": "private",
-                "type": "string",
+                "type": "boolean",
                 "ask": {
                     "en": "Are the instance metadata private ?",
                     "fr": "Est-ce les metadatas de l'instance sont privée ?"
                 },
-                "choices": ["true", "false"],
-                "default": "false"
+                "default": false
             },
             {
                 "name": "local_timeline",
-                "type": "string",
+                "type": "boolean",
                 "ask": {
                     "en": "Do you want to add a local timeline ?",
                     "fr": "Voulez vous afficher une timeline locale ?"
                 },
-                "choices": ["true", "false"],
-                "default": "true"
+                "default": false
             }
          ] 
     }
