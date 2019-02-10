@@ -18,6 +18,7 @@
 		setup_private=1
 		setup_public=1
 		upgrade=1
+		#upgrade=1	from_commit=CommitHash
 		backup_restore=1
 		multi_instance=1
 		incorrect_path=1
@@ -29,7 +30,7 @@
 	Level 3=auto
 # Level 4: If the app supports LDAP and SSOwat, turn level 4 to '1' and add a link to an issue or a part of your code to show it.
 # If the app does not use LDAP nor SSOwat, and can't use them, turn level 4 to 'na' and explain as well.
-  # https://github.com/YunoHost-Apps/writefreely_ynh/issues/24
+	# https://github.com/YunoHost-Apps/writefreely_ynh/issues/24
 	Level 4=na
 	Level 5=auto
 	Level 6=auto
@@ -40,3 +41,8 @@
 ;;; Options
 Email=
 Notification=none
+#;;; Upgrade options
+#	; commit=CommitHash
+#		name=Name and date of the commit.
+#		manifest_arg=domain=DOMAIN&path=PATH&admin=USER&language=fr&is_public=1&password=pass&port=666&
+

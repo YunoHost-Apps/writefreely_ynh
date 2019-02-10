@@ -34,6 +34,7 @@ ynh_abort_if_errors
 #=================================================
 # LOAD SETTINGS
 #=================================================
+ynh_print_info "Load settings"
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -62,12 +63,14 @@ ynh_restore_file "/etc/nginx/conf.d/$domain.d/$app.conf"
 #=================================================
 # RESTORE THE APP MAIN DIR
 #=================================================
+ynh_print_info "Restore the app main directory"
 
 ynh_restore_file "$final_path"
 
 #=================================================
 # RECREATE THE DEDICATED USER
 #=================================================
+ynh_print_info "Recreate the dedicated user"
 
 # Create the dedicated user (if not existing)
 ynh_system_user_create "$app" "$final_path"
@@ -90,6 +93,7 @@ chown -R "$app":"$app" "$final_path"
 #=================================================
 # REINSTALL DEPENDENCIES
 #=================================================
+ynh_print_info "Reinstall dependencies"
 
 # Define and install dependencies
 #ynh_install_app_dependencies deb1 deb2
@@ -97,6 +101,7 @@ chown -R "$app":"$app" "$final_path"
 #=================================================
 # RESTORE THE MYSQL DATABASE
 #=================================================
+ynh_print_info "Restore the mysql database"
 
 db_pwd=$(ynh_app_setting_get $app mysqlpwd)
 ynh_mysql_setup_db $db_name $db_name $db_pwd
@@ -105,6 +110,7 @@ ynh_mysql_connect_as $db_name $db_pwd $db_name < ./db.sql
 #=================================================
 # RESTORE SYSTEMD
 #=================================================
+ynh_print_info "Restore the systemd configuration"
 
 ynh_restore_file "/etc/systemd/system/$app.service"
 systemctl enable $app.service
@@ -133,6 +139,7 @@ yunohost service add $app --description "$app daemon for WriteFreely" --log_type
 #=================================================
 # RELOAD NGINX AND PHP-FPM
 #=================================================
+ynh_print_info "Reload nginx and php-fpm"
 
 #systemctl reload php7.0-fpm
 systemctl reload nginx
@@ -142,3 +149,9 @@ systemctl reload nginx
 #=================================================
 
 ynh_systemd_action --action=start --service_name=$app
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_print_info "Restoration completed"

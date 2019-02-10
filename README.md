@@ -35,13 +35,15 @@ Additionals parameters can be configure in Settings / admin settings.
 
 ## Documentation
 
- * [Official documentation](https://writefreely.org/start)
+ * Official documentation: https://writefreely.org/start
+
+## YunoHost specific features
 
 #### Multi-users support
 
 No LDAP and no HTTP auth supported
 
-Depending of the configuration, the app be used by multiple users
+If User Mode is configured Multiple users, the app be used by multiple users
 
 #### Supported architectures
 
