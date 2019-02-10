@@ -72,16 +72,6 @@
                 },
                 "default": true
             },
-            {
-                "name": "site_description",
-                "type": "string",
-                "ask": {
-                    "en": "Choose a description for your WriteFreely instance",
-                    "fr": "Choisissez une description pour votre instance WriteFreely"
-                },
-                "default": "WriteFreely_Blogs"
-            },
-            {
                 "name": "open_registration",
                 "type": "boolean",
                 "ask": {
