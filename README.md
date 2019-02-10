@@ -31,7 +31,7 @@ Each User can be limited from 1 to unlimited blogs.
 
 ## Configuration
 
-How to configure this app: by an admin panel, a plain file with SSH, or any other way.
+Additionals parameters can be configure in Settings / admin settings.
 
 ## Documentation
 
