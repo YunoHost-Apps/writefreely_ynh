@@ -73,15 +73,6 @@
                 "default": true
             },
             {
-                "name": "site_name",
-                "type": "string",
-                "ask": {
-                    "en": "Choose a name for your WriteFreely instance",
-                    "fr": "Choisissez un nom pour votre instance WriteFreely"
-                },
-                "default": "WriteFreely"
-            },
-            {
                 "name": "site_description",
                 "type": "string",
                 "ask": {

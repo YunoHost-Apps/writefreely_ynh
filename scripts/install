@@ -43,7 +43,6 @@ is_public=$YNH_APP_ARG_IS_PUBLIC
 #language=$YNH_APP_ARG_LANGUAGE
 password=$YNH_APP_ARG_PASSWORD
 single_user=$YNH_APP_ARG_SINGLE_USER
-site_name=$YNH_APP_ARG_SITE_NAME
 site_description=$YNH_APP_ARG_SITE_DESCRIPTION
 open_registration=$YNH_APP_ARG_OPEN_REGISTRATION
 max_blogs=$YNH_APP_ARG_MAX_BLOGS
@@ -97,7 +96,6 @@ ynh_app_setting_set $app admin $admin
 ynh_app_setting_set $app is_public $is_public
 #ynh_app_setting_set $app language $language
 ynh_app_setting_set $app single_user $single_user
-ynh_app_setting_set $app site_name $site_name
 ynh_app_setting_set $app site_description $site_description
 ynh_app_setting_set $app open_registration $open_registration
 ynh_app_setting_set $app max_blogs $max_blogs
@@ -277,7 +275,6 @@ ynh_replace_string "__DBPWD__" "$db_pwd" "$final_path/config.ini"
 ynh_replace_string "__PORT__" "$port" "$final_path/config.ini"
 ynh_replace_string "__DOMAIN_URL__" "https://$domain$path_url" "$final_path/config.ini"
 ynh_replace_string "__SINGLEUSER__" "$single_user" "$final_path/config.ini"
-ynh_replace_string "__SITENAME__" "$site_name" "$final_path/config.ini"
 ynh_replace_string "__SITEDESCRIPTION__" "$site_description" "$final_path/config.ini"
 ynh_replace_string "__OPENREGISTRATION__" "$open_registration" "$final_path/config.ini"
 ynh_replace_string "__MAXBLOGS__" "$max_blogs" "$final_path/config.ini"
