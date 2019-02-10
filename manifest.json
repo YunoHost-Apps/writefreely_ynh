@@ -73,24 +73,6 @@
                 "default": true
             },
             {
-                "name": "public_stats",
-                "type": "boolean",
-                "ask": {
-                    "en": "Are federation stats public ?",
-                    "fr": "Est-ce les statistiques de federation sont publiques ?"
-                },
-                "default": true
-            },
-            {
-                "name": "private",
-                "type": "boolean",
-                "ask": {
-                    "en": "Are the instance metadata private ?",
-                    "fr": "Est-ce les metadatas de l'instance sont privée ?"
-                },
-                "default": false
-            },
-            {
                 "name": "local_timeline",
                 "type": "boolean",
                 "ask": {

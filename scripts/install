@@ -43,8 +43,6 @@ is_public=$YNH_APP_ARG_IS_PUBLIC
 #language=$YNH_APP_ARG_LANGUAGE
 password=$YNH_APP_ARG_PASSWORD
 single_user=$YNH_APP_ARG_SINGLE_USER
-public_stats=$YNH_APP_ARG_PUBLIC_STATS
-private=$YNH_APP_ARG_PRIVATE
 local_timeline=$YNH_APP_ARG_LOCAL_TIMELINE
 
 ## Bypass package_checker name not compatible with writefreely
@@ -92,8 +90,6 @@ ynh_app_setting_set $app admin $admin
 ynh_app_setting_set $app is_public $is_public
 #ynh_app_setting_set $app language $language
 ynh_app_setting_set $app single_user $single_user
-ynh_app_setting_set $app public_stats $public_stats
-ynh_app_setting_set $app private $private
 ynh_app_setting_set $app local_timeline $local_timeline
 
 #=================================================
@@ -267,8 +263,6 @@ ynh_replace_string "__DBPWD__" "$db_pwd" "$final_path/config.ini"
 ynh_replace_string "__PORT__" "$port" "$final_path/config.ini"
 ynh_replace_string "__DOMAIN_URL__" "https://$domain$path_url" "$final_path/config.ini"
 ynh_replace_string "__SINGLEUSER__" "$single_user" "$final_path/config.ini"
-ynh_replace_string "__PUBLICSTATS__" "$public_stats" "$final_path/config.ini"
-ynh_replace_string "__PRIVATE__" "$private" "$final_path/config.ini"
 ynh_replace_string "__LOCALTIMELINE__" "$local_timeline" "$final_path/config.ini"
 
 #=================================================

@@ -7,12 +7,9 @@
 	; Manifest
 		domain="domain.tld"	(DOMAIN)
 		admin="john"	(USER)
-
 		is_public=1	(PUBLIC|public=1|private=0)
 		password="pass"
 		single_user="true"
-		public_stats="true"
-		private="false"
 		local_timeline="true"		
 	; Checks
 		pkg_linter=1
