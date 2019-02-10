@@ -71,15 +71,6 @@
                     "fr": "Souhaitez vous un blog pour un seul utilisateur?"
                 },
                 "default": true
-            },
-            {
-                "name": "local_timeline",
-                "type": "boolean",
-                "ask": {
-                    "en": "Do you want to add a local timeline ?",
-                    "fr": "Voulez vous afficher une timeline locale ?"
-                },
-                "default": false
             }
          ] 
     }
