@@ -100,10 +100,10 @@ path_url=$(ynh_normalize_url_path $path_url)
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
+# Download, check integrity, uncompress and patch the source from app.src
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-# Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source "$final_path"
+    ynh_setup_source "$final_path"
 fi
 
 #=================================================
@@ -117,7 +117,7 @@ ynh_add_nginx_config
 # UPGRADE DEPENDENCIES
 #=================================================
 
-#ynh_install_app_dependencies mysql
+#ynh_install_app_dependencies deb1 deb2
 
 #=================================================
 # CREATE DEDICATED USER

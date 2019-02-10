@@ -7,8 +7,9 @@
 	; Manifest
 		domain="domain.tld"	(DOMAIN)
 		admin="john"	(USER)
-		password="pass"
+
 		is_public=1	(PUBLIC|public=1|private=0)
+		password="pass"
 		single_user="true"
 		site_name="WriteFreely"
 		site_description="WriteFreely Blogs"
@@ -29,7 +30,7 @@
 		backup_restore=1
 		multi_instance=1
 		incorrect_path=1
-		port_already_use=1
+		port_already_use=0
 		change_url=0
 ;;; Levels
 	Level 1=auto
