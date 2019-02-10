@@ -72,14 +72,6 @@
                 },
                 "default": true
             },
-                "name": "open_registration",
-                "type": "boolean",
-                "ask": {
-                    "en": "Are registrations opened to all ?",
-                    "fr": "Les inscriptions sont t'elles ouvertes ?"
-                },
-                "default": true
-            },
             {
                 "name": "max_blogs",
                 "type": "string",
