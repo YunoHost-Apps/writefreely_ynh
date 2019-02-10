@@ -11,8 +11,6 @@
 		is_public=1	(PUBLIC|public=1|private=0)
 		password="pass"
 		single_user="true"
-		max_blogs="1"
-		federation="true"
 		public_stats="true"
 		private="false"
 		local_timeline="true"		

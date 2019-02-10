@@ -6,7 +6,7 @@
         "en": "For starting a minimalist, federated blog — or an entire community.",
         "fr": "Permet de créer un blog fédéré minimaliste ou une communauté entière."
     },
-    "version": "0.8.1~ynh3",
+    "version": "0.8.1~ynh4",
     "url": "https://writefreely.org",
     "license": "free",
     "maintainer": {
@@ -69,24 +69,6 @@
                 "ask": {
                     "en": "Choose if you want a Single User Blog ?",
                     "fr": "Souhaitez vous un blog pour un seul utilisateur?"
-                },
-                "default": true
-            },
-            {
-                "name": "max_blogs",
-                "type": "string",
-                "ask": {
-                    "en": "How many blogs each user can create ?",
-                    "fr": "Combien de blogs chaque utilisateur peut créer ?"
-                },
-                "default": "3"
-            },
-            {
-                "name": "federation",
-                "type": "boolean",
-                "ask": {
-                    "en": "Is it federation enabled ?",
-                    "fr": "Est-ce une application publique ?"
                 },
                 "default": true
             },
