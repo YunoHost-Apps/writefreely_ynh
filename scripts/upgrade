@@ -42,6 +42,7 @@ ynh_app_setting_delete $app open_registration
 ynh_app_setting_delete $app max_blogs
 ynh_app_setting_delete $app federation
 ynh_app_setting_delete $app public_stats
+ynh_app_setting_delete $app private
 ynh_app_setting_delete $app local_timeline
 
 #=================================================

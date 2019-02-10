@@ -9,7 +9,7 @@
 		admin="john"	(USER)
 		is_public=1	(PUBLIC|public=1|private=0)
 		password="pass"
-		single_user="true"		
+		single_user="true"
 	; Checks
 		pkg_linter=1
 		setup_sub_dir=0
