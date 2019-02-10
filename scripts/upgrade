@@ -36,6 +36,15 @@ final_path=$(ynh_app_setting_get $app final_path)
 db_name=$(ynh_app_setting_get $app db_name)
 port=$(ynh_app_setting_get $app port)
 
+ynh_app_setting_delete $app site_name
+ynh_app_setting_delete $app site_description
+ynh_app_setting_delete $app open_registration
+ynh_app_setting_delete $app max_blogs
+ynh_app_setting_delete $app federation
+ynh_app_setting_delete $app public_stats
+ynh_app_setting_delete $app private
+ynh_app_setting_delete $app local_timeline
+
 #=================================================
 # CHECK VERSION
 #=================================================

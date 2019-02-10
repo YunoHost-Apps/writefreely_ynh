@@ -7,18 +7,9 @@
 	; Manifest
 		domain="domain.tld"	(DOMAIN)
 		admin="john"	(USER)
-
 		is_public=1	(PUBLIC|public=1|private=0)
 		password="pass"
-		single_user="true"
-		site_name="WriteFreely"
-		site_description="WriteFreely Blogs"
-		open_registration="true"
-		max_blogs="1"
-		federation="true"
-		public_stats="true"
-		private="false"
-		local_timeline="true"		
+		single_user=1
 	; Checks
 		pkg_linter=1
 		setup_sub_dir=0
