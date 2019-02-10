@@ -3,10 +3,10 @@
     "id": "writefreely",
     "packaging_format": 1,
     "description": {
-        "en": "Write Freely is free and open source software for starting a minimalist, federated blog — or an entire community.",
-        "fr": "Write Freely est un logiciel gratuit et à code source ouvert permettant de créer un blog fédéré minimaliste ou une communauté entière."
+        "en": "For starting a minimalist, federated blog — or an entire community.",
+        "fr": "Permet de créer un blog fédéré minimaliste ou une communauté entière."
     },
-    "version": "0.8.1~ynh3",
+    "version": "0.8.1~ynh4",
     "url": "https://writefreely.org",
     "license": "free",
     "maintainer": {
@@ -14,7 +14,7 @@
         "email": "anmol@datamol.org"
     },
     "requirements": {
-        "yunohost": ">= 2.7.14"
+        "yunohost": ">= 3.4"
     },
     "multi_instance": true,
     "services": [
@@ -42,6 +42,15 @@
                 "example": "johndoe"
             },
             {
+                "name": "is_public",
+                "type": "boolean",
+                "ask": {
+                    "en": "Is it a public application?",
+                    "fr": "Est-ce une application publique ?"
+                },
+                "default": true
+            },
+            {
                 "name": "password",
                 "type": "password",
                 "ask": {
@@ -55,100 +64,13 @@
                 "example": "Choose a password"
             },
             {
-                "name": "is_public",
-                "type": "boolean",
-                "ask": {
-                    "en": "Is it a public application?",
-                    "fr": "Est-ce une application publique ?"
-                },
-                "default": true
-            },
-            {
                 "name": "single_user",
-                "type": "string",
+                "type": "boolean",
                 "ask": {
                     "en": "Choose if you want a Single User Blog ?",
                     "fr": "Souhaitez vous un blog pour un seul utilisateur?"
                 },
-                "choices": ["true", "false"],
-                "default": "true"
-            },
-            {
-                "name": "site_name",
-                "type": "string",
-                "ask": {
-                    "en": "Choose a name for your WriteFreely instance",
-                    "fr": "Choisissez un nom pour votre instance WriteFreely"
-                },
-                "default": "WriteFreely"
-            },
-            {
-                "name": "site_description",
-                "type": "string",
-                "ask": {
-                    "en": "Choose a description for your WriteFreely instance",
-                    "fr": "Choisissez une description pour votre instance WriteFreely"
-                },
-                "default": "WriteFreely_Blogs"
-            },
-            {
-                "name": "open_registration",
-                "type": "string",
-                "ask": {
-                    "en": "Are registrations opened to all ?",
-                    "fr": "Les inscriptions sont t'elles ouvertes ?"
-                },
-                "choices": ["true", "false"],
-                "default": "true"
-            },
-            {
-                "name": "max_blogs",
-                "type": "string",
-                "ask": {
-                    "en": "How many blogs each user can create ?",
-                    "fr": "Combien de blogs chaque utilisateur peut créer ?"
-                },
-                "default": "3"
-            },
-            {
-                "name": "federation",
-                "type": "string",
-                "ask": {
-                    "en": "Is it federation enabled ?",
-                    "fr": "Est-ce une application publique ?"
-                },
-                "choices": ["true", "false"],
-                "default": "true"
-            },
-            {
-                "name": "public_stats",
-                "type": "string",
-                "ask": {
-                    "en": "Are federation stats public ?",
-                    "fr": "Est-ce les statistiques de federation sont publiques ?"
-                },
-                "choices": ["true", "false"],
-                "default": "true"
-            },
-            {
-                "name": "private",
-                "type": "string",
-                "ask": {
-                    "en": "Are the instance metadata private ?",
-                    "fr": "Est-ce les metadatas de l'instance sont privée ?"
-                },
-                "choices": ["true", "false"],
-                "default": "false"
-            },
-            {
-                "name": "local_timeline",
-                "type": "string",
-                "ask": {
-                    "en": "Do you want to add a local timeline ?",
-                    "fr": "Voulez vous afficher une timeline locale ?"
-                },
-                "choices": ["true", "false"],
-                "default": "true"
+                "default": true
             }
          ] 
     }
