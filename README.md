@@ -21,10 +21,6 @@ Each User can be limited from 1 to unlimited blogs.
 
 ![writefreely-screenshot2](https://user-images.githubusercontent.com/30271971/52228579-00409400-28b3-11e9-8a1c-7625494c8747.png)
 
-## License
-
-**LICENSE:** AGPL-3.0
-
 ## Demo
 
 * [Official demo](https://write.as/new)

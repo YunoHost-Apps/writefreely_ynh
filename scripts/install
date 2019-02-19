@@ -67,7 +67,7 @@ app=$YNH_APP_INSTANCE_NAME
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-ynh_print_info "Validating arguments ..."
+ynh_print_info "Validating installation parameters..."
 
 ### If the app uses nginx as web server (written in HTML/PHP in most cases), the final path should be "/var/www/$app".
 ### If the app provides an internal web server (or uses another application server such as uwsgi), the final path should be "/opt/yunohost/$app"
@@ -83,7 +83,7 @@ ynh_webpath_register $app $domain $path_url
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_print_info "Store settings from manifest ..."
+ynh_print_info "Storing installation settings..."
 
 ynh_app_setting_set $app domain $domain
 ynh_app_setting_set $app path $path_url
@@ -158,7 +158,7 @@ ynh_setup_source "$final_path"
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_print_info "Configuring nginx ..."
+ynh_print_info "Configuring nginx web server..."
 
 ### `ynh_add_nginx_config` will use the file conf/nginx.conf
 
@@ -351,7 +351,7 @@ fi
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_print_info "Reloading nginx ..."
+ynh_print_info "Reloading nginx web server..."
 
 systemctl reload nginx
 
@@ -365,4 +365,4 @@ ynh_systemd_action --action=start --service_name=$app
 # END OF SCRIPT
 #=================================================
 
-ynh_print_info "Installation completed"
+ynh_print_info "Installation of $app completed"
