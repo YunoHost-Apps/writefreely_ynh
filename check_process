@@ -39,8 +39,8 @@
 	Level 9=0
 	Level 10=0
 ;;; Options
-Email=
-Notification=none
+Email=yalh@yahoo.com
+Notification=change
 #;;; Upgrade options
 #	; commit=CommitHash
 #		name=Name and date of the commit.
