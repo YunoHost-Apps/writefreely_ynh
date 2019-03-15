@@ -13,15 +13,6 @@ source ynh_check_app_version_changed
 source /usr/share/yunohost/helpers
 
 #=================================================
-# MANAGE APPLICATION NOT COMPATIBLE WITH ARM
-#=================================================
-
-if [ $architecture = "arm" ]
-then
-        ynh_die "WriteFreely not available on Arm"
-fi
-
-#=================================================
 # LOAD SETTINGS
 #=================================================
 ynh_print_info "Loading installation settings..."

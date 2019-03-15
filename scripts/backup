@@ -12,15 +12,6 @@ source ../settings/scripts/ynh_systemd_action
 source /usr/share/yunohost/helpers
 
 #=================================================
-# MANAGE APPLICATION NOT COMPATIBLE WITH ARM
-#=================================================
-
-if [ $architecture = "arm" ]
-then
-        ynh_die "WriteFreely not available on Arm"
-fi
-
-#=================================================
 # MANAGE SCRIPT FAILURE
 #=================================================
 
