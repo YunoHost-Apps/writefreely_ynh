@@ -23,15 +23,6 @@ ynh_clean_setup () {
 ynh_abort_if_errors
 
 #=================================================
-# MANAGE APPLICATION NOT COMPATIBLE WITH ARM
-#=================================================
-
-if [ $architecture = "ar1m" ]
-then
-        ynh_die "WriteFreely not available on Arm"
-fi
-
-#=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 ynh_print_info "Retrieve arguments from the manifest ..."
@@ -78,6 +69,15 @@ path_url=$(ynh_normalize_url_path $path_url)
 
 # Register (book) web path
 ynh_webpath_register $app $domain $path_url
+
+#=================================================
+# MANAGE APPLICATION NOT COMPATIBLE WITH ARM
+#=================================================
+
+if [ $architecture = "arm" ]
+then
+        ynh_die "WriteFreely not available on Arm"
+fi
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
