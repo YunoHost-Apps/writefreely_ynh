@@ -26,7 +26,7 @@ ynh_abort_if_errors
 # MANAGE APPLICATION NOT COMPATIBLE WITH ARM
 #=================================================
 
-if [ $architecture = "arm" ]
+if [ $architecture = "ar1m" ]
 then
         ynh_die "WriteFreely not available on Arm"
 fi
