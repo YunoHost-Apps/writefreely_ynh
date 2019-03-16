@@ -71,6 +71,15 @@ path_url=$(ynh_normalize_url_path $path_url)
 ynh_webpath_register $app $domain $path_url
 
 #=================================================
+# MANAGE APPLICATION NOT COMPATIBLE WITH ARM
+#=================================================
+
+if [ $architecture = "arm" ]
+then
+        ynh_die "WriteFreely not available on Arm"
+fi
+
+#=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
 ynh_print_info "Storing installation settings..."
