@@ -6,18 +6,8 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
-source detect_arch
 source _common.sh
 source /usr/share/yunohost/helpers
-
-#=================================================
-# MANAGE APPLICATION NOT COMPATIBLE WITH ARM
-#=================================================
-
-if [ $architecture = "arm" ]
-then
-        ynh_die "WriteFreely not available on Arm"
-fi
 
 #=================================================
 # RETRIEVE ARGUMENTS
