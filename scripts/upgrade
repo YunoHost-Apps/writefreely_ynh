@@ -107,7 +107,7 @@ ynh_print_info "Upgrading source files..."
 # Download, check integrity, uncompress and patch the source from app.src
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-    ynh_setup_source "$final_path"
+    ynh_setup_source "$final_path" $architecture
 fi
 
 #=================================================
