@@ -35,15 +35,6 @@ final_path=$(ynh_app_setting_get $app final_path)
 #db_pwd=$(ynh_app_setting_get $app db_pwd)
 
 #=================================================
-# CHECK THE SYNTAX OF THE PATHS
-#=================================================
-
-test -n "$old_path" || old_path="/"
-test -n "$new_path" || new_path="/"
-new_path=$(ynh_normalize_url_path $new_path)
-old_path=$(ynh_normalize_url_path $old_path)
-
-#=================================================
 # CHECK WHICH PARTS SHOULD BE CHANGED
 #=================================================
 
@@ -114,8 +105,6 @@ ynh_systemd_action --action=start --service_name=$app
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================
 
-### Verify the checksum of a file, stored by `ynh_store_file_checksum` in the install script.
-### And create a backup of this file if the checksum is different. So the file will be backed up if the admin had modified it.
 ynh_backup_if_checksum_is_different "$final_path/config.ini"
 # Recalculate and store the checksum of the file for the next upgrade.
 ynh_store_file_checksum "$final_path/config.ini"
