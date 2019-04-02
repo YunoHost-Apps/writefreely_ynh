@@ -9,10 +9,14 @@
     "version": "0.8.1~ynh4",
     "url": "https://writefreely.org",
     "license": "AGPL-3.0-or-later",
-    "maintainer": {
-        "name": "Anmol Sharma, yalh76",
-        "email": "anmol@datamol.org"
-    },
+    "maintainer": [
+        {
+            "name": "Anmol Sharma",
+            "email": "anmol@datamol.org"
+        },
+        {
+            "name": "yalh76"
+        }],
     "requirements": {
         "yunohost": ">= 3.4"
     },
