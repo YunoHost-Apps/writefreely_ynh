@@ -138,7 +138,7 @@ ynh_replace_string "__DBNAME__" "$db_name" "$final_path/config.ini"
 ynh_replace_string "__DBUSER__" "$db_name" "$final_path/config.ini"
 ynh_replace_string "__DBPWD__" "$db_pwd" "$final_path/config.ini"
 ynh_replace_string "__PORT__" "$port" "$final_path/config.ini"
-ynh_replace_string "__DOMAIN_URL__" "https://$domain$path_url" "$final_path/config.ini"
+ynh_replace_string "__DOMAIN_URL__" "https://$domain" "$final_path/config.ini"
 ynh_replace_string "__SINGLEUSER__" "$single_user" "$final_path/config.ini"
 
 #=================================================

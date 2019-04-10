@@ -93,7 +93,7 @@ ynh_systemd_action --action=stop --service_name=$app
 # MODIFY A CONFIG FILE
 #=================================================
 
-ynh_replace_string "host              =.*" "host              = https://$new_domain$new_path" "$final_path/config.ini"
+ynh_replace_string "host              =.*" "host              = https://$new_domain" "$final_path/config.ini"
 
 #=================================================
 # START SERVICE
