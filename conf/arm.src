@@ -1,5 +1,5 @@
 SOURCE_URL=https://github.com/YunoHost-Apps/writefreely_ynh/releases/download/v0.9.0/writefreely_0.9.0_linux_arm64.tar.gz
-SOURCE_SUM=bbad23296af3667b0343a4eb748f10876d808746634322595821c8b48620ce7e
+SOURCE_SUM=5457f003b6138a93d96fc058255775144509f61fbfd359ea7b5ccdab2b651f83
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=false
