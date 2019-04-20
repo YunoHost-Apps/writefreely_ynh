@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/writeas/writefreely/releases/download/v0.9.0/writefreely_0.9.0_linux_amd64.tar.gz
-SOURCE_SUM=4735f6b6803e49555269001db05da1daa644f9712abbf670cf9967d83c20752d
+SOURCE_URL=https://github.com/writeas/writefreely/releases/download/v0.9.1/writefreely_0.9.1_linux_amd64.tar.gz
+SOURCE_SUM=e852fa7fccaf55b30dd1d47894d589f56766ddeb24812f180f29fa58ea86b717
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=false

@@ -15,7 +15,7 @@ Each User can be limited from 1 to unlimited blogs.
 
 **WriteFreely** require a dedicated **root domain**, eg. writefreely.domain.tld
 
-**Shipped version:** v0.9.0
+**Shipped version:** v0.9.1
 
 ## Screenshots
 
