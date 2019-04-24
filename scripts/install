@@ -9,7 +9,6 @@
 source detect_arch
 source _common.sh
 source detect_arch
-source ynh_systemd_action
 source /usr/share/yunohost/helpers
 
 #=================================================
