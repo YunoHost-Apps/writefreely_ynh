@@ -24,7 +24,7 @@ ynh_abort_if_errors
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
-ynh_print_info "Retrieve arguments from the manifest ..."
+ynh_print_info --message="Retrieve arguments from the manifest ..."
 
 domain=$YNH_APP_ARG_DOMAIN
 path_url="/"
@@ -45,10 +45,10 @@ app=$YNH_APP_INSTANCE_NAME
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-ynh_print_info "Validating installation parameters..."
+ynh_print_info --message="Validating installation parameters..."
 
 final_path=/var/www/$app
-test ! -e "$final_path" || ynh_die "This path already contains a folder"
+test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
 
 # Register (book) web path
 ynh_webpath_register $app $domain $path_url
@@ -56,55 +56,50 @@ ynh_webpath_register $app $domain $path_url
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_print_info "Storing installation settings..."
+ynh_print_info --message="Storing installation settings..."
 
-ynh_app_setting_set $app domain $domain
-ynh_app_setting_set $app path $path_url
-ynh_app_setting_set $app admin $admin
-ynh_app_setting_set $app is_public $is_public
+ynh_app_setting_set --app=$app --key=domain --value=$domain
+ynh_app_setting_set --app=$app --key=path --value=$path_url
+ynh_app_setting_set --app=$app --key=admin --value=$admin
+ynh_app_setting_set --app=$app --key=is_public --value=$is_public
 
-ynh_app_setting_set $app single_user $single_user
+ynh_app_setting_set --app=$app --key=single_user --value=$single_user
 
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
 # FIND AND OPEN A PORT
 #=================================================
-ynh_print_info "Configuring firewall ..."
+ynh_print_info --message="Configuring firewall ..."
 
 # Find a free port
-port=$(ynh_find_port 8095)
-ynh_app_setting_set $app port $port
+port=$(ynh_find_port --port=8095)
 
-#=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_print_info "Installing dependencies ..."
-
-#ynh_install_app_dependencies deb1 deb2
+ynh_app_setting_set --app=$app --key=port --value=$port
 
 #=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
-ynh_print_info "Creating a mysql database ..."
+ynh_print_info --message="Creating a MySQL database..."
 
-db_name=$(ynh_sanitize_dbid $app)
-ynh_app_setting_set $app db_name $db_name
-ynh_mysql_setup_db $db_name $db_name
+db_name=$(ynh_sanitize_dbid --db_name=$app)
+db_user=$db_name
+ynh_app_setting_set --app=$app --key=db_name --value=$db_name
+ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_print_info "Setting up source files ..."
+ynh_print_info --message="Setting up source files..."
 
-ynh_app_setting_set $app final_path $final_path
+ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source "$final_path" $architecture
+ynh_setup_source --dest_dir="$final_path" --source_id=$architecture
 
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_print_info "Configuring nginx web server..."
+ynh_print_info --message="Configuring nginx web server..."
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
@@ -112,17 +107,17 @@ ynh_add_nginx_config
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_print_info "Configuring system user ..."
+ynh_print_info --message="Configuring system user..."
 
 # Create a system user
-ynh_system_user_create "$app" "$final_path"
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # SPECIFIC SETUP
 #=================================================
 # SETUP SYSTEMD
 #=================================================
-ynh_print_info "Configuring a systemd service ..."
+ynh_print_info --message="Configuring a systemd service ..."
 
 # Create a dedicated systemd config
 ynh_add_systemd_config
@@ -134,22 +129,20 @@ ynh_add_systemd_config
 # setup application config
 cp "../conf/config.ini" "$final_path/config.ini"
 
-ynh_replace_string "__DBNAME__" "$db_name" "$final_path/config.ini"
-ynh_replace_string "__DBUSER__" "$db_name" "$final_path/config.ini"
-ynh_replace_string "__DBPWD__" "$db_pwd" "$final_path/config.ini"
-ynh_replace_string "__PORT__" "$port" "$final_path/config.ini"
-ynh_replace_string "__DOMAIN_URL__" "https://$domain" "$final_path/config.ini"
-ynh_replace_string "__SINGLEUSER__" "$single_user" "$final_path/config.ini"
+ynh_replace_string --match_string="__DBNAME__" --replace_string="$db_name" --target_file="$final_path/config.ini"
+ynh_replace_string --match_string="__DBUSER__" --replace_string="$db_name" --target_file="$final_path/config.ini"
+ynh_replace_string --match_string="__DBPWD__" --replace_string="$db_pwd" --target_file="$final_path/config.ini"
+ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="$final_path/config.ini"
+ynh_replace_string --match_string="__DOMAIN_URL__" --replace_string="https://$domain" --target_file="$final_path/config.ini"
+ynh_replace_string --match_string="__SINGLEUSER__" --replace_string="$single_user" --target_file="$final_path/config.ini"
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================
 
 # Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum "$final_path/config.ini"
+ynh_store_file_checksum --file="$final_path/config.ini"
 
-#=================================================
-# SPECIFIC SETUP
 #=================================================
 # MAKE SETUP
 #=================================================
@@ -179,32 +172,32 @@ chown -R "$app":"$app" "$final_path"
 yunohost service add $app --description "$app daemon for WriteFreely" --log_type systemd
 
 #=================================================
+# START SYSTEMD SERVICE
+#=================================================
+
+ynh_systemd_action --service_name=$app --action=start
+
+#=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_print_info "Configuring SSOwat ..."
+ynh_print_info --message="Configuring SSOwat ..."
 
 # Make app public if necessary
 if [ $is_public -eq 1 ]
 then
 	# unprotected_uris allows SSO credentials to be passed anyway.
-	ynh_app_setting_set $app unprotected_uris "/"
+	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
 fi
 
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_print_info "Reloading nginx web server..."
+ynh_print_info --message="Reloading nginx web server..."
 
-systemctl reload nginx
-
-#=================================================
-# START SERVICE
-#=================================================
-
-ynh_systemd_action --action=start --service_name=$app
+ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_print_info "Installation of $app completed"
+ynh_print_info --message="Installation of $app completed"
