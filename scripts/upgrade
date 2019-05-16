@@ -14,18 +14,18 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_print_info "Loading installation settings..."
+ynh_print_info --message="Loading installation settings..."
 
 app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get $app domain)
-path_url=$(ynh_app_setting_get $app path)
-admin=$(ynh_app_setting_get $app admin)
-is_public=$(ynh_app_setting_get $app is_public)
-final_path=$(ynh_app_setting_get $app final_path)
+domain=$(ynh_app_setting_get --app=$app --key=domain)
+path_url=$(ynh_app_setting_get --app=$app --key=path)
+admin=$(ynh_app_setting_get --app=$app --key=admin)
+is_public=$(ynh_app_setting_get --app=$app --key=is_public)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 
-db_name=$(ynh_app_setting_get $app db_name)
-port=$(ynh_app_setting_get $app port)
+db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+port=$(ynh_app_setting_get --app=$app --key=port)
 
 #=================================================
 # CHECK VERSION
@@ -36,44 +36,51 @@ upgrade_type=$(ynh_check_app_version_changed)
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_print_info "Ensuring downward compatibility..."
+ynh_print_info --message="Ensuring downward compatibility..."
 
 # Fix is_public as a boolean value
 if [ "$is_public" = "Yes" ]; then
-	ynh_app_setting_set $app is_public 1
+	ynh_app_setting_set --app=$app --key=is_public --value=1
 	is_public=1
 elif [ "$is_public" = "No" ]; then
-	ynh_app_setting_set $app is_public 0
+	ynh_app_setting_set --app=$app --key=is_public --value=0
 	is_public=0
 fi
 
 # If db_name doesn't exist, create it
-if [ -z $db_name ]; then
-	db_name=$(ynh_sanitize_dbid $app)
-	ynh_app_setting_set $app db_name $db_name
+if [ -z "$db_name" ]; then
+	db_name=$(ynh_sanitize_dbid --db_name=$app)
+	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 fi
 
 # If final_path doesn't exist, create it
-if [ -z $final_path ]; then
+if [ -z "$final_path" ]; then
 	final_path=/var/www/$app
-	ynh_app_setting_set $app final_path $final_path
+	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 fi
 
-# remove old variables
-ynh_app_setting_delete $app site_name
-ynh_app_setting_delete $app site_description
-ynh_app_setting_delete $app open_registration
-ynh_app_setting_delete $app max_blogs
-ynh_app_setting_delete $app federation
-ynh_app_setting_delete $app public_stats
-ynh_app_setting_delete $app private
-ynh_app_setting_delete $app local_timeline
+# Remove old variables
+ynh_app_setting_delete --app=$app --key=site_name
+ynh_app_setting_delete --app=$app --key=site_description
+ynh_app_setting_delete --app=$app --key=open_registration
+ynh_app_setting_delete --app=$app --key=max_blogs
+ynh_app_setting_delete --app=$app --key=federation
+ynh_app_setting_delete --app=$app --key=public_stats
+ynh_app_setting_delete --app=$app --key=private
+ynh_app_setting_delete --app=$app --key=local_timeline
 
+# Close a port
+
+if yunohost firewall list | grep -q "\- $port$"
+then
+	echo "Close port $port" >&2
+	yunohost firewall disallow TCP $port 2>&1
+fi
 
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
-ynh_print_info "Backing up the app before upgrading (may take a while)..."
+ynh_print_info --message="Backing up the app before upgrading (may take a while)..."
 
 # Backup the current version of the app
 ynh_backup_before_upgrade
@@ -86,53 +93,40 @@ ynh_clean_setup () {
 ynh_abort_if_errors
 
 #=================================================
-# STOP SERVICE
-#=================================================
-
-ynh_systemd_action --action=stop --service_name=$app
-
-#=================================================
-# CHECK THE PATH
-#=================================================
-
-# Normalize the URL path syntax
-path_url=$(ynh_normalize_url_path $path_url)
-
-#=================================================
 # STANDARD UPGRADE STEPS
+#=================================================
+# STOP SYSTEMD SERVICE
+#=================================================
+
+ynh_systemd_action --service_name=$app --action=stop
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_print_info "Upgrading source files..."
 
-# Download, check integrity, uncompress and patch the source from app.src
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-    ynh_setup_source "$final_path" $architecture
+	ynh_print_info --message="Upgrading source files..."
+
+	# Download, check integrity, uncompress and patch the source from app.src
+	ynh_setup_source --dest_dir="$final_path" --source_id=$architecture
 fi
 
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_print_info "Upgrading nginx web server configuration..."
+ynh_print_info --message="Upgrading nginx web server configuration..."
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
 
 #=================================================
-# UPGRADE DEPENDENCIES
-#=================================================
-ynh_print_info "Upgrading dependencies..."
-
-#ynh_install_app_dependencies deb1 deb2
-
-#=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_print_info "Making sure dedicated system user exists..."
+ynh_print_info --message="Making sure dedicated system user exists..."
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create "$app" "$final_path"
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # SPECIFIC UPGRADE
@@ -146,24 +140,18 @@ pushd $final_path
 	sudo -u $app ./writefreely --migrate
 popd
 
-ynh_backup_if_checksum_is_different "$final_path/config.ini"
+#=================================================
+# STORE THE CONFIG FILE CHECKSUM
+#=================================================
+
+ynh_backup_if_checksum_is_different --file="$final_path/config.ini"
 # Recalculate and store the checksum of the file for the next upgrade.
-ynh_store_file_checksum "$final_path/config.ini"
-
-#=================================================
-# CLOSE A PORT
-#=================================================
-
-if yunohost firewall list | grep -q "\- $port$"
-then
-	echo "Close port $port" >&2
-	yunohost firewall disallow TCP $port 2>&1
-fi
+ynh_store_file_checksum --file="$final_path/config.ini"
 
 #=================================================
 # SETUP SYSTEMD
 #=================================================
-ynh_print_info "Upgrading systemd configuration..."
+ynh_print_info --message="Upgrading systemd configuration..."
 
 # Create a dedicated systemd config
 ynh_add_systemd_config
@@ -180,30 +168,31 @@ chown -R "$app":"$app" "$final_path"
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_print_info "Upgrading SSOwat configuration..."
+ynh_print_info --message="Upgrading SSOwat configuration..."
 
 # Make app public if necessary
 if [ $is_public -eq 1 ]
 then
 	# unprotected_uris allows SSO credentials to be passed anyway
-	ynh_app_setting_set $app unprotected_uris "/"
+	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
 fi
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-ynh_print_info "Reloading nginx web server..."
-
-systemctl reload nginx
 
 #=================================================
 # START SERVICE
 #=================================================
+ynh_print_info --message="Starting a systemd service.."
 
-ynh_systemd_action --action=start --service_name=$app
+ynh_systemd_action --service_name=$app --action=start
+
+#=================================================
+# RELOAD NGINX
+#=================================================
+ynh_print_info --message="Reloading nginx web server..."
+
+ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_print_info "Upgrade of $app completed"
+ynh_print_info --message="Upgrade of $app completed"
