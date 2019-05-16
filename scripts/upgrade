@@ -65,7 +65,7 @@ ynh_app_setting_delete --app=$app --key=site_description
 ynh_app_setting_delete --app=$app --key=open_registration
 ynh_app_setting_delete --app=$app --key=max_blogs
 ynh_app_setting_delete --app=$app --key=federation
-ynh_app_setting_delete --app=$app--key= public_stats
+ynh_app_setting_delete --app=$app --key=public_stats
 ynh_app_setting_delete --app=$app --key=private
 ynh_app_setting_delete --app=$app --key=local_timeline
 
