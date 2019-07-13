@@ -65,7 +65,6 @@ If User Mode is configured Multiple users, the app be used by multiple users
 Developers info
 ----------------
 
-**Only if you want to use a testing branch for coding, instead of merging directly into master.**
 Please do your pull request to the [testing branch](https://github.com/YunoHost-Apps/writefreely_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
