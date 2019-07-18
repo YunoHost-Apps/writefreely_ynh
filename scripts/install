@@ -34,8 +34,7 @@ password=$YNH_APP_ARG_PASSWORD
 single_user=$YNH_APP_ARG_SINGLE_USER
 
 # Bypass package_checker name not compatible with writefreely
-if [ "$admin" = "package_checker" ]
-then
+if [ ${PACKAGE_CHECK_EXEC:-0} -eq 1 ]; then
 	admin="test"
 fi
 
