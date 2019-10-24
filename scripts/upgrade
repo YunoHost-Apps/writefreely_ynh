@@ -6,7 +6,6 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
-source detect_arch
 source _common.sh
 source ynh_detect_arch__2
 source ynh_check_app_version_changed
