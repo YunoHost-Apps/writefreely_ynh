@@ -29,7 +29,7 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 #=================================================
 
 # Remove a service from the admin panel, added by `yunohost service add`
-if yunohost service status $app >/dev/null 2>&1
+if ynh_exec_warn_less yunohost service status $app >/dev/null
 then
 	ynh_print_info --message="Removing $app service..."
 	yunohost service remove $app
@@ -46,7 +46,7 @@ ynh_remove_systemd_config
 #=================================================
 # REMOVE THE MYSQL DATABASE
 #=================================================
-ynh_print_info --message="Removing the MySQL database"
+ynh_print_info --message="Removing the MySQL database..."
 
 # Remove a database if it exists, along with the associated user
 ynh_mysql_remove_db --db_user=$db_user --db_name=$db_name
@@ -54,7 +54,7 @@ ynh_mysql_remove_db --db_user=$db_user --db_name=$db_name
 #=================================================
 # REMOVE APP MAIN DIR
 #=================================================
-ynh_print_info --message="Removing app main directory"
+ynh_print_info --message="Removing app main directory..."
 
 # Remove the app directory securely
 ynh_secure_remove --file="$final_path"
@@ -62,7 +62,7 @@ ynh_secure_remove --file="$final_path"
 #=================================================
 # REMOVE NGINX CONFIGURATION
 #=================================================
-ynh_print_info --message="Removing nginx web server configuration"
+ynh_print_info --message="Removing nginx web server configuration..."
 
 # Remove the dedicated nginx config
 ynh_remove_nginx_config
