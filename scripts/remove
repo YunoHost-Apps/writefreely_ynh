@@ -68,6 +68,14 @@ ynh_print_info --message="Removing nginx web server configuration..."
 ynh_remove_nginx_config
 
 #=================================================
+# REMOVE LOGROTATE CONFIGURATION
+#=================================================
+ynh_script_progression --message="Removing logrotate configuration..." --time --weight=1
+
+# Remove the app-specific logrotate config
+ynh_remove_logrotate
+
+#=================================================
 # CLOSE A PORT
 #=================================================
 
