@@ -1,0 +1,62 @@
+#!/bin/bash
+
+GO_VERSION="1.13.4"
+NODE_VERSION="v13.1.0"
+WRITEFREELY_VERSION="0.11.1"
+
+# Install Go for ARM64
+
+cd
+rm -rf ~/gitwork
+wget https://dl.google.com/go/$GO_VERSION.linux-arm64.tar.gz
+tar -zxvf go$GO_VERSION.linux-arm64.tar.gz
+rm go$GO_VERSION.linux-arm64.tar.gz
+rm -rf /usr/local/go/
+mv go /usr/local/
+export GOROOT=/usr/local/go
+mkdir -p ~/gitwork/go/src
+mkdir ~/gitwork/go/bin
+mkdir ~/gitwork/go/pkg
+export GOPATH=~/gitwork/go
+export PATH=$PATH:/usr/local/go/bin
+export PATH="$PATH:$GOPATH/bin"
+go version
+
+# Install Nodejs for ARM64
+
+wget https://nodejs.org/dist/v13.1.0/node-$NODE_VERSION-linux-arm64.tar.xz
+tar -xvf node-$NODE_VERSION-linux-arm64.tar.xz
+rm node-$NODE_VERSION-linux-arm64.tar.xz
+rm -rf /usr/local/node-$NODE_VERSION-linux-arm64/
+cp -rp node-$NODE_VERSION-linux-arm64 /usr/local/
+rm -rf node-$NODE_VERSION-linux-arm64
+ln -s /usr/local/node-$NODE_VERSION-linux-arm64 /usr/local/node
+export PATH=$PATH:/usr/local/node/bin
+node --version
+
+# Build writefreely
+
+go get -u github.com/go-bindata/go-bindata/...
+go get -d github.com/writeas/writefreely/cmd/writefreely
+
+cd $GOPATH/src/github.com/writeas/writefreely
+
+git checkout -b v$WRITEFREELY_VERSION
+
+# If running Go 1.11+
+export GO111MODULE=on
+
+make build   # Compile the application
+
+# Create the package
+
+cd 
+wget https://github.com/writeas/writefreely/releases/download/v0.11.1/writefreely_$WRITEFREELY_VERSION_linux_amd64.tar.gz
+rm -rf writefreely
+tar -zxvf writefreely_$WRITEFREELY_VERSION_linux_amd64.tar.gz
+rm writefreely_$WRITEFREELY_VERSION_linux_amd64.tar.gz
+rm -rf writefreely/writefreely
+
+cp $GOPATH/src/github.com/writeas/writefreely/cmd/writefreely/writefreely writefreely/writefreely
+
+tar -zcvf writefreely_$WRITEFREELY_VERSION_linux_arm64.tar.gz writefreely
