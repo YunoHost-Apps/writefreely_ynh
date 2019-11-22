@@ -13,7 +13,7 @@ Can be run as Single User Blog or Multi User Instance.
 
 Each User can be limited from 1 to unlimited blogs.
 
-**Shipped version:** v0.10.0
+**Shipped version:** v0.11.1
 
 ## Important points to read before installing
 
@@ -49,7 +49,6 @@ If User Mode is configured Multiple users, the app be used by multiple users
 
 * x86-64b - [![Build Status](https://ci-apps.yunohost.org/ci/logs/writefreely%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
 * ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/writefreely%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/writefreely/)
-* Jessie x86-64b - [![Build Status](https://ci-stretch.nohost.me/ci/logs/writefreely%20%28Apps%29.svg)](https://ci-stretch.nohost.me/ci/apps/writefreely/)
 
 ## Limitations
 

@@ -102,7 +102,7 @@ yunohost service add $app --description "$app daemon for WriteFreely" --log_type
 #=================================================
 ynh_print_info --message="Starting a systemd service..."
 
-ynh_systemd_action --service_name=$app --action="start"
+ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Serving on"
 
 #=================================================
 # GENERIC FINALIZATION
