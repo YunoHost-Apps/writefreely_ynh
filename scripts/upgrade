@@ -32,6 +32,7 @@ architecture=$(ynh_detect_arch)
 #=================================================
 # CHECK VERSION
 #=================================================
+ynh_print_info --message="Checking version..."
 
 upgrade_type=$(ynh_check_app_version_changed)
 
@@ -134,7 +135,7 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 # SPECIFIC UPGRADE
 #=================================================
-# MAKE UPGRADE
+# MAKE THE UPGRADE
 #=================================================
 ynh_print_info --message="Making the upgrade..."
 
@@ -147,6 +148,7 @@ popd
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================
+ynh_print_info --message="Storing the config file checksum..."
 
 ynh_backup_if_checksum_is_different --file="$final_path/config.ini"
 # Recalculate and store the checksum of the file for the next upgrade.
@@ -165,6 +167,7 @@ ynh_add_systemd_config
 #=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
+ynh_print_info --message="Securing files and directories..."
 
 # Set permissions on app files
 chown -R "$app":"$app" "$final_path"
@@ -182,7 +185,7 @@ then
 fi
 
 #=================================================
-# START SERVICE
+# START SYSTEMD SERVICE
 #=================================================
 ynh_print_info --message="Starting a systemd service..."
 
