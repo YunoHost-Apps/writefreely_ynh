@@ -142,6 +142,8 @@ ynh_print_info --message="Making the upgrade..."
 chown -R "$app":"$app" "$final_path"
 
 pushd $final_path
+	ynh_mysql_execute_as_root --sql="ALTER DATABASE $db_name CHARACTER SET latin1 COLLATE latin1_swedish_ci;" --database=$db_name
+	sudo -u $app ./writefreely db migrate
 	sudo -u $app ./writefreely --migrate
 popd
 
