@@ -1,6 +1,6 @@
 # WriteFreely app for Yunohost
 
-[![Integration level](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely)  
+[![Integration level](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely) ![](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)  
 [![Install WriteFreely with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=writefreely)
 
 > *This package allow you to install WriteFreely quickly and simply on a YunoHost server.  
@@ -47,7 +47,7 @@ If User Mode is configured Multiple users, the app be used by multiple users
 
 #### Supported architectures
 
-* x86-64b - [![Build Status](https://ci-apps.yunohost.org/ci/logs/writefreely%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/writefreely%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
 * ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/writefreely%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/writefreely/)
 
 ## Limitations
@@ -58,15 +58,15 @@ If User Mode is configured Multiple users, the app be used by multiple users
 
  * Report a bug: https://github.com/YunoHost-Apps/writefreely_ynh/issues
  * App website: https://writefreely.org/
- * GitHub website: https://github.com/writeas/writefreely
+ * Upstream app repository: https://github.com/writeas/writefreely
  * YunoHost website: https://yunohost.org/
 
 ---
 
-Developers info
+Developer info
 ----------------
 
-Please do your pull request to the [testing branch](https://github.com/YunoHost-Apps/writefreely_ynh/tree/testing).
+Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/writefreely_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
 ```

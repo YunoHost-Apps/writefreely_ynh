@@ -14,7 +14,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_print_info --message="Loading installation settings..."
+ynh_script_progression --message="Loading installation settings..."
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -32,14 +32,14 @@ architecture=$(ynh_detect_arch)
 #=================================================
 # CHECK VERSION
 #=================================================
-ynh_print_info --message="Checking version..."
+ynh_script_progression --message="Checking version..."
 
 upgrade_type=$(ynh_check_app_version_changed)
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_print_info --message="Ensuring downward compatibility..."
+ynh_script_progression --message="Ensuring downward compatibility..."
 
 # Fix is_public as a boolean value
 if [ "$is_public" = "Yes" ]; then
@@ -83,7 +83,7 @@ fi
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
-ynh_print_info --message="Backing up the app before upgrading (may take a while)..."
+ynh_script_progression --message="Backing up the app before upgrading (may take a while)..."
 
 # Backup the current version of the app
 ynh_backup_before_upgrade
@@ -100,7 +100,7 @@ ynh_abort_if_errors
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_print_info --message="Stopping a systemd service..."
+ynh_script_progression --message="Stopping a systemd service..."
 
 ynh_systemd_action --service_name=$app --action="stop" --log_path="systemd" --line_match="Stopped Write Freely"
 
@@ -110,7 +110,7 @@ ynh_systemd_action --service_name=$app --action="stop" --log_path="systemd" --li
 
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
-	ynh_print_info --message="Upgrading source files..."
+	ynh_script_progression --message="Upgrading source files..."
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path" --source_id=$architecture
@@ -119,7 +119,7 @@ fi
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_print_info --message="Upgrading nginx web server configuration..."
+ynh_script_progression --message="Upgrading nginx web server configuration..."
 
 # Create a dedicated nginx config
 ynh_add_nginx_config
@@ -127,7 +127,7 @@ ynh_add_nginx_config
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_print_info --message="Making sure dedicated system user exists..."
+ynh_script_progression --message="Making sure dedicated system user exists..."
 
 # Create a dedicated user (if not existing)
 ynh_system_user_create --username=$app --home_dir="$final_path"
@@ -137,7 +137,7 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 # MAKE THE UPGRADE
 #=================================================
-ynh_print_info --message="Making the upgrade..."
+ynh_script_progression --message="Making the upgrade..."
 
 chown -R "$app":"$app" "$final_path"
 
@@ -148,36 +148,51 @@ pushd $final_path
 popd
 
 #=================================================
-# STORE THE CONFIG FILE CHECKSUM
-#=================================================
-ynh_print_info --message="Storing the config file checksum..."
-
-ynh_backup_if_checksum_is_different --file="$final_path/config.ini"
-# Recalculate and store the checksum of the file for the next upgrade.
-ynh_store_file_checksum --file="$final_path/config.ini"
-
-#=================================================
 # SETUP SYSTEMD
 #=================================================
-ynh_print_info --message="Upgrading systemd configuration..."
+ynh_script_progression --message="Upgrading systemd configuration..."
 
 # Create a dedicated systemd config
 ynh_add_systemd_config
+
+#=================================================
+# STORE THE CONFIG FILE CHECKSUM
+#=================================================
+ynh_script_progression --message="Storing the config file checksum..."
+
+ynh_backup_if_checksum_is_different --file="$final_path/config.ini"
+
+# Recalculate and store the checksum of the file for the next upgrade.
+ynh_store_file_checksum --file="$final_path/config.ini"
 
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
-ynh_print_info --message="Securing files and directories..."
+ynh_script_progression --message="Securing files and directories..."
 
 # Set permissions on app files
 chown -R "$app":"$app" "$final_path"
 
 #=================================================
+# INTEGRATE SERVICE IN YUNOHOST
+#=================================================
+ynh_script_progression --message="Integrating service in YunoHost..."
+
+yunohost service add $app --description "$app daemon for WriteFreely" --log "/var/log/$app/$app.log"
+
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_script_progression --message="Starting a systemd service..."
+
+ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Serving on"
+
+#=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_print_info --message="Upgrading SSOwat configuration..."
+ynh_script_progression --message="Upgrading SSOwat configuration..."
 
 # Make app public if necessary
 if [ $is_public -eq 1 ]
@@ -187,16 +202,9 @@ then
 fi
 
 #=================================================
-# START SYSTEMD SERVICE
-#=================================================
-ynh_print_info --message="Starting a systemd service..."
-
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Serving on"
-
-#=================================================
 # RELOAD NGINX
 #=================================================
-ynh_print_info --message="Reloading nginx web server..."
+ynh_script_progression --message="Reloading nginx web server..."
 
 ynh_systemd_action --service_name=nginx --action=reload
 
@@ -204,4 +212,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_print_info --message="Upgrade of $app completed"
+ynh_script_progression --message="Upgrade of $app completed"
