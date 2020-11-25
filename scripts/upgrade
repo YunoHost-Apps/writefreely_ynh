@@ -8,7 +8,6 @@
 
 source _common.sh
 source ynh_detect_arch__2
-source ynh_check_app_version_changed
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -72,14 +71,6 @@ ynh_app_setting_delete --app=$app --key=public_stats
 ynh_app_setting_delete --app=$app --key=private
 ynh_app_setting_delete --app=$app --key=local_timeline
 
-# Close a port
-
-if yunohost firewall list | grep -q "\- $port$"
-then
-	echo "Close port $port" >&2
-	yunohost firewall disallow TCP $port 2>&1
-fi
-
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
@@ -119,9 +110,9 @@ fi
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Upgrading nginx web server configuration..."
+ynh_script_progression --message="Upgrading NGINX web server configuration..."
 
-# Create a dedicated nginx config
+# Create a dedicated NGINX config
 ynh_add_nginx_config
 
 #=================================================
@@ -139,12 +130,12 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 ynh_script_progression --message="Making the upgrade..."
 
-chown -R "$app":"$app" "$final_path"
+chown -R $app: $final_path
 
 pushd $final_path
 	ynh_mysql_execute_as_root --sql="ALTER DATABASE $db_name CHARACTER SET latin1 COLLATE latin1_swedish_ci;" --database=$db_name
-	sudo -u $app ./writefreely db migrate
-	sudo -u $app ./writefreely --migrate
+	ynh_exec_as $app ./writefreely db migrate
+	ynh_exec_as $app ./writefreely --migrate
 popd
 
 #=================================================
@@ -173,7 +164,7 @@ ynh_store_file_checksum --file="$final_path/config.ini"
 ynh_script_progression --message="Securing files and directories..."
 
 # Set permissions on app files
-chown -R "$app":"$app" "$final_path"
+chown -R $app: "$final_path"
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
@@ -187,24 +178,12 @@ yunohost service add $app --description "$app daemon for WriteFreely" --log "/va
 #=================================================
 ynh_script_progression --message="Starting a systemd service..."
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Serving on"
-
-#=================================================
-# SETUP SSOWAT
-#=================================================
-ynh_script_progression --message="Upgrading SSOwat configuration..."
-
-# Make app public if necessary
-if [ $is_public -eq 1 ]
-then
-	# unprotected_uris allows SSO credentials to be passed anyway
-	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
-fi
+ynh_systemd_action --service_name=$app --action=start --log_path="systemd" --line_match="Serving on"
 
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading nginx web server..."
+ynh_script_progression --message="Reloading NGINX web server..."
 
 ynh_systemd_action --service_name=nginx --action=reload
 

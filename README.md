@@ -13,7 +13,7 @@ Can be run as Single User Blog or Multi User Instance.
 
 Each User can be limited from 1 to unlimited blogs.
 
-**Shipped version:** v0.12.0
+**Shipped version:** 0.12.0
 
 ## Important points to read before installing
 
@@ -63,8 +63,7 @@ If User Mode is configured Multiple users, the app be used by multiple users
 
 ---
 
-Developer info
-----------------
+## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/writefreely_ynh/tree/testing).
 
