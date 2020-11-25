@@ -21,9 +21,7 @@ Each User can be limited from 1 to unlimited blogs.
 
 ## Screenshots
 
-![writefreely-screenshot1](https://user-images.githubusercontent.com/30271971/52228565-fa4ab300-28b2-11e9-8983-3eb8cdbc2262.png)
-
-![writefreely-screenshot2](https://user-images.githubusercontent.com/30271971/52228579-00409400-28b3-11e9-8a1c-7625494c8747.png)
+![writefreely-screenshot](https://writefreely.org/img/screens/pencil-reader.png)
 
 ## Demo
 
