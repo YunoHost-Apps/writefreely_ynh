@@ -63,8 +63,7 @@ If User Mode is configured Multiple users, the app be used by multiple users
 
 ---
 
-Developer info
-----------------
+## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/writefreely_ynh/tree/testing).
 

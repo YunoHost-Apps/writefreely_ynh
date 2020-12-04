@@ -18,7 +18,7 @@
             "name": "yalh76"
         }],
     "requirements": {
-        "yunohost": ">= 3.5"
+        "yunohost": ">= 3.8.1"
     },
     "multi_instance": true,
     "services": [
@@ -67,8 +67,8 @@
                 "name": "single_user",
                 "type": "boolean",
                 "ask": {
-                    "en": "Choose if you want a Single User Blog ?",
-                    "fr": "Souhaitez vous un blog pour un seul utilisateur?"
+                    "en": "Choose if you want a Single User Blog?",
+                    "fr": "Souhaitez vous un blog pour un seul utilisateur ?"
                 },
                 "default": true
             }
