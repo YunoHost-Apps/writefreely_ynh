@@ -129,23 +129,7 @@ ynh_add_systemd_config
 #=================================================
 ynh_script_progression --message="Modifying a config file..."
 
-# setup application config
-cp "../conf/config.ini" "$final_path/config.ini"
-
-ynh_replace_string --match_string="__DBNAME__" --replace_string="$db_name" --target_file="$final_path/config.ini"
-ynh_replace_string --match_string="__DBUSER__" --replace_string="$db_name" --target_file="$final_path/config.ini"
-ynh_replace_string --match_string="__DBPWD__" --replace_string="$db_pwd" --target_file="$final_path/config.ini"
-ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="$final_path/config.ini"
-ynh_replace_string --match_string="__DOMAIN_URL__" --replace_string="https://$domain" --target_file="$final_path/config.ini"
-ynh_replace_string --match_string="__SINGLEUSER__" --replace_string="$single_user" --target_file="$final_path/config.ini"
-
-#=================================================
-# STORE THE CONFIG FILE CHECKSUM
-#=================================================
-ynh_script_progression --message="Storing the config file checksum..."
-
-# Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum --file="$final_path/config.ini"
+ynh_add_config --template="../conf/config.ini" --destination="$final_path/config.ini"
 
 #=================================================
 # MAKE SETUP

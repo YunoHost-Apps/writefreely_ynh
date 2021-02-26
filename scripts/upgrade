@@ -24,7 +24,10 @@ admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+db_user=$db_name
+db_pwd=$(ynh_app_setting_get --app=$app --key=db_pwd)
 port=$(ynh_app_setting_get --app=$app --key=port)
+single_user=$(ynh_app_setting_get --app=$app --key=single_user)
 
 architecture=$(ynh_detect_arch)
 
@@ -52,7 +55,6 @@ ynh_app_setting_delete --app=$app --key=private
 ynh_app_setting_delete --app=$app --key=local_timeline
 
 # Close a port
-
 if yunohost firewall list | grep -q "\- $port$"
 then
 	echo "Close port $port" >&2
@@ -142,14 +144,11 @@ ynh_script_progression --message="Upgrading systemd configuration..."
 ynh_add_systemd_config
 
 #=================================================
-# STORE THE CONFIG FILE CHECKSUM
+# MODIFY A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Storing the config file checksum..."
+ynh_script_progression --message="Modifying a config file..."
 
-ynh_backup_if_checksum_is_different --file="$final_path/config.ini"
-
-# Recalculate and store the checksum of the file for the next upgrade.
-ynh_store_file_checksum --file="$final_path/config.ini"
+ynh_add_config --template="../conf/config.ini" --destination="$final_path/config.ini"
 
 #=================================================
 # GENERIC FINALIZATION
