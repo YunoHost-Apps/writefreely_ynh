@@ -3,8 +3,8 @@
 [![Integration level](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely) ![](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)  
 [![Install WriteFreely with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 
-> *This package allow you to install WriteFreely quickly and simply on a YunoHost server.  
-If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to know how to install and enjoy it.*
+> *This package allows you to install WriteFreely quickly and simply on a YunoHost server.  
+If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
 
 ## Overview
 WriteFreely is a beautifully pared-down blogging platform that's simple on the surface, yet powerful underneath.
@@ -39,7 +39,7 @@ Additionals parameters can be configure in Settings / admin settings.
 
 ## YunoHost specific features
 
-#### Multi-users support
+#### Multi-user support
 
 No LDAP and no HTTP auth supported
 
