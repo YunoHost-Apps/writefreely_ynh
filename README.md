@@ -47,8 +47,8 @@ If User Mode is configured Multiple users, the app be used by multiple users
 
 #### Supported architectures
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/writefreely%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/writefreely%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/writefreely/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/writefreely.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/writefreely.svg)](https://ci-apps-arm.yunohost.org/ci/apps/writefreely/)
 
 ## Limitations
 
