@@ -70,7 +70,7 @@ if ! ynh_permission_exists --permission="api"; then
 fi
 
 #=================================================
-# BACKUP BEFORE CHANGE URL THEN ACTIVE TRAP
+# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
 ynh_script_progression --message="Backing up the app before upgrading (may take a while)..."
 
@@ -149,9 +149,9 @@ ynh_script_progression --message="Upgrading systemd configuration..."
 ynh_add_systemd_config
 
 #=================================================
-# ADD A CONFIGURATION
+# UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Adding a config file..."
+ynh_script_progression --message="Updating a config file..."
 
 ynh_add_config --template="../conf/config.ini" --destination="$final_path/config.ini"
 
