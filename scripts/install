@@ -129,6 +129,16 @@ ynh_script_progression --message="Configuring a systemd service..."
 ynh_add_systemd_config
 
 #=================================================
+# ADD A CONFIGURATION
+#=================================================
+ynh_script_progression --message="Adding a config file..."
+
+ynh_add_config --template="../conf/config.ini" --destination="$final_path/config.ini"
+
+chmod 400 "$final_path/config.ini"
+chown $app:$app "$final_path/config.ini"
+
+#=================================================
 # MAKE SETUP
 #=================================================
 ynh_script_progression --message="Making setup..."
@@ -138,16 +148,6 @@ pushd $final_path
 	sudo -u $app ./writefreely --gen-keys
 	sudo -u $app ./writefreely --create-admin "$admin":"$password"
 popd
-
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
-ynh_script_progression --message="Adding a config file..."
-
-ynh_add_config --template="../conf/config.ini" --destination="$final_path/config.ini"
-
-chmod 400 "$final_path/config.ini"
-chown $app:$app "$final_path/config.ini"
 
 #=================================================
 # GENERIC FINALIZATION
