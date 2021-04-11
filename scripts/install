@@ -108,7 +108,7 @@ ynh_setup_source --dest_dir="$final_path" --source_id=$architecture
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
-chown -R root:$app "$final_path"
+chown -R $app:$app "$final_path"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -121,14 +121,6 @@ ynh_add_nginx_config
 #=================================================
 # SPECIFIC SETUP
 #=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Configuring a systemd service..."
-
-# Create a dedicated systemd config
-ynh_add_systemd_config
-
-#=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding a config file..."
@@ -137,6 +129,14 @@ ynh_add_config --template="../conf/config.ini" --destination="$final_path/config
 
 chmod 400 "$final_path/config.ini"
 chown $app:$app "$final_path/config.ini"
+
+#=================================================
+# SETUP SYSTEMD
+#=================================================
+ynh_script_progression --message="Configuring a systemd service..."
+
+# Create a dedicated systemd config
+ynh_add_systemd_config
 
 #=================================================
 # MAKE SETUP
