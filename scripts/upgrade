@@ -8,7 +8,6 @@
 
 source _common.sh
 source ynh_detect_arch__2
-source ynh_check_app_version_changed
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -23,6 +22,8 @@ path_url=$(ynh_app_setting_get --app=$app --key=path)
 admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+db_user=$db_name
+db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 port=$(ynh_app_setting_get --app=$app --key=port)
 
 architecture=$(ynh_detect_arch)
