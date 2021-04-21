@@ -6,11 +6,11 @@ After=network.target
 Type=simple
 User=__APP__
 Group=__APP__
-StandardOutput=syslog
-StandardError=syslog
-WorkingDirectory=__FINALPATH__
+WorkingDirectory=__FINALPATH__/
 ExecStart=__FINALPATH__/writefreely
 Restart=always
+StandardOutput=syslog
+StandardError=syslog
 
 [Install]
 WantedBy=multi-user.target
