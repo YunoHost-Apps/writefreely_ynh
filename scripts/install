@@ -80,6 +80,14 @@ port=$(ynh_find_port --port=8095)
 ynh_app_setting_set --app=$app --key=port --value=$port
 
 #=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Configuring system user..."
+
+# Create a system user
+ynh_system_user_create --username=$app --home_dir="$final_path"
+
+#=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
 ynh_script_progression --message="Creating a MySQL database..."
@@ -98,24 +106,30 @@ ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path" --source_id=$architecture
 
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
 ynh_script_progression --message="Configuring NGINX web server..."
 
-# Create a dedicated nginx config
+# Create a dedicated NGINX config
 ynh_add_nginx_config
 
 #=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Configuring system user..."
-
-# Create a system user
-ynh_system_user_create --username=$app --home_dir="$final_path"
-
-#=================================================
 # SPECIFIC SETUP
+#=================================================
+# ADD A CONFIGURATION
+#=================================================
+ynh_script_progression --message="Adding a config file..."
+
+ynh_add_config --template="../conf/config.ini" --destination="$final_path/config.ini"
+
+chmod 400 "$final_path/config.ini"
+chown $app:$app "$final_path/config.ini"
+
 #=================================================
 # SETUP SYSTEMD
 #=================================================
@@ -125,34 +139,9 @@ ynh_script_progression --message="Configuring a systemd service..."
 ynh_add_systemd_config
 
 #=================================================
-# MODIFY A CONFIG FILE
-#=================================================
-ynh_script_progression --message="Modifying a config file..."
-
-# setup application config
-cp "../conf/config.ini" "$final_path/config.ini"
-
-ynh_replace_string --match_string="__DBNAME__" --replace_string="$db_name" --target_file="$final_path/config.ini"
-ynh_replace_string --match_string="__DBUSER__" --replace_string="$db_name" --target_file="$final_path/config.ini"
-ynh_replace_string --match_string="__DBPWD__" --replace_string="$db_pwd" --target_file="$final_path/config.ini"
-ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="$final_path/config.ini"
-ynh_replace_string --match_string="__DOMAIN_URL__" --replace_string="https://$domain" --target_file="$final_path/config.ini"
-ynh_replace_string --match_string="__SINGLEUSER__" --replace_string="$single_user" --target_file="$final_path/config.ini"
-
-#=================================================
-# STORE THE CONFIG FILE CHECKSUM
-#=================================================
-ynh_script_progression --message="Storing the config file checksum..."
-
-# Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum --file="$final_path/config.ini"
-
-#=================================================
 # MAKE SETUP
 #=================================================
 ynh_script_progression --message="Making setup..."
-
-chown -R "$app":"$app" "$final_path"
 
 pushd $final_path
 	sudo -u $app ./writefreely --init-db
@@ -162,14 +151,6 @@ popd
 
 #=================================================
 # GENERIC FINALIZATION
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-ynh_script_progression --message="Securing files and directories..."
-
-# Set permissions to app files
-chown -R "$app":"$app" "$final_path"
-
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
