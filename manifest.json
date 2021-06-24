@@ -8,6 +8,13 @@
     },
     "version": "0.13.0~ynh1",
     "url": "https://writefreely.org",
+    "upstream": {
+        "license": "AGPL-3.0-or-later",
+        "website": "https://writefreely.org",
+        "demo": "https://write.as/new",
+        "userdoc": "https://writefreely.org/start",
+        "code": "https://github.com/writeas/writefreely"
+    },
     "license": "AGPL-3.0-or-later",
     "maintainer": {
         "name": "yalh76"
