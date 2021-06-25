@@ -3,7 +3,7 @@
     "id": "writefreely",
     "packaging_format": 1,
     "description": {
-        "en": "For starting a minimalist, federated blog — or an entire community.",
+        "en": "For starting a minimalist, federated blog or an entire community.",
         "fr": "Permet de créer un blog fédéré minimaliste ou une communauté entière."
     },
     "version": "0.13.0~ynh1",
