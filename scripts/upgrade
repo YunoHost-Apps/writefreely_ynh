@@ -138,6 +138,7 @@ pushd $final_path
 	ynh_mysql_execute_as_root --sql="ALTER DATABASE $db_name CHARACTER SET latin1 COLLATE latin1_swedish_ci;" --database=$db_name
 	sudo -u $app ./writefreely db migrate
 	sudo -u $app ./writefreely --migrate
+	sudo -u $app ./writefreely keys generate
 popd
 
 #=================================================
