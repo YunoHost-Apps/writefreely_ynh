@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 For starting a minimalist, federated blog or an entire community.
 
-**Shipped version:** 0.13.0~ynh1
+**Shipped version:** 0.13.1~ynh1
 
 **Demo:** https://write.as/new
 
