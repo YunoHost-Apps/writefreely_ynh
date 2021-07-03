@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Permet de créer un blog fédéré minimaliste ou une communauté entière.
 
-**Version incluse :** 0.13.0~ynh1
+**Version incluse :** 0.13.1~ynh1
 
 **Démo :** https://write.as/new
 
