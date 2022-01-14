@@ -7,7 +7,6 @@
 #=================================================
 
 source _common.sh
-source ynh_detect_arch__2
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -32,7 +31,7 @@ is_public=$YNH_APP_ARG_IS_PUBLIC
 password=$YNH_APP_ARG_PASSWORD
 single_user=$YNH_APP_ARG_SINGLE_USER
 
-architecture=$(ynh_detect_arch)
+architecture=$YNH_ARCH
 
 # Bypass package_checker name not compatible with writefreely
 if [ ${PACKAGE_CHECK_EXEC:-0} -eq 1 ]; then
@@ -123,7 +122,7 @@ ynh_add_nginx_config
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding a config file..."
+ynh_script_progression --message="Adding a configuration file..."
 
 ynh_add_config --template="../conf/config.ini" --destination="$final_path/config.ini"
 
@@ -144,9 +143,9 @@ ynh_add_systemd_config
 ynh_script_progression --message="Making setup..."
 
 pushd $final_path
-	sudo -u $app ./writefreely --init-db
-	sudo -u $app ./writefreely --gen-keys
-	sudo -u $app ./writefreely --create-admin "$admin":"$password"
+	ynh_exec_as $app ./writefreely --init-db
+	ynh_exec_as $app ./writefreely --gen-keys
+	ynh_exec_as $app ./writefreely --create-admin "$admin":"$password"
 popd
 
 #=================================================
