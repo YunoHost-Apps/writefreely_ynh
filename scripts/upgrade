@@ -7,7 +7,6 @@
 #=================================================
 
 source _common.sh
-source ynh_detect_arch__2
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -27,7 +26,7 @@ db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 port=$(ynh_app_setting_get --app=$app --key=port)
 single_user=$(ynh_app_setting_get --app=$app --key=single_user)
 
-architecture=$(ynh_detect_arch)
+architecture=$YNH_ARCH
 
 #=================================================
 # CHECK VERSION
@@ -136,15 +135,15 @@ ynh_script_progression --message="Making the upgrade..."
 
 pushd $final_path
 	ynh_mysql_execute_as_root --sql="ALTER DATABASE $db_name CHARACTER SET latin1 COLLATE latin1_swedish_ci;" --database=$db_name
-	sudo -u $app ./writefreely db migrate
-	sudo -u $app ./writefreely --migrate
-	sudo -u $app ./writefreely keys generate
+	ynh_exec_as $app ./writefreely db migrate
+	ynh_exec_as $app ./writefreely --migrate
+	ynh_exec_as $app ./writefreely keys generate
 popd
 
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Updating a config file..."
+ynh_script_progression --message="Updating a configuration file..."
 
 ynh_add_config --template="../conf/config.ini" --destination="$final_path/config.ini"
 

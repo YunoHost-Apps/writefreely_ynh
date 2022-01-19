@@ -11,9 +11,13 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Permet de créer un blog fédéré minimaliste ou une communauté entière.
+WriteFreely is a beautifully pared-down blogging platform that's simple on the surface, yet powerful underneath.
 
-**Version incluse :** 0.13.1~ynh1
+Can be run as Single User Blog or Multi User Instance.
+
+Each User can be limited from 1 to unlimited blogs.
+
+**Version incluse :** 0.13.1~ynh2
 
 **Démo :** https://write.as/new
 
@@ -24,14 +28,12 @@ Permet de créer un blog fédéré minimaliste ou une communauté entière.
 
 ## Avertissements / informations importantes
 
-* Any known limitations, constrains or stuff not working, such as (but not limited to):
-    * **WriteFreely** require a dedicated **root domain**, eg. writefreely.domain.tld
-    * i386 architectures not supported
-    * No LDAP and no HTTP auth supported
+* **WriteFreely** require a dedicated **root domain**, eg. writefreely.domain.tld
+* i386 architectures not supported
+* No LDAP and no HTTP auth supported
 
-* Other infos that people should be aware of, such as:
-    * If User Mode is configured Multiple users, the app be used by multiple users
-    * Additionals parameters can be configured in Settings / Admin settings.
+* If User Mode is configured Multiple users, the app be used by multiple users
+* Additionals parameters can be configured in Settings / Admin settings.
 
 ## Documentations et ressources
 

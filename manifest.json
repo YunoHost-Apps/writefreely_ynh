@@ -6,7 +6,7 @@
         "en": "For starting a minimalist, federated blog or an entire community.",
         "fr": "Permet de créer un blog fédéré minimaliste ou une communauté entière."
     },
-    "version": "0.13.1~ynh1",
+    "version": "0.13.1~ynh2",
     "url": "https://writefreely.org",
     "upstream": {
         "license": "AGPL-3.0-or-later",
@@ -20,7 +20,7 @@
         "name": "yalh76"
     },
     "requirements": {
-        "yunohost": ">= 4.1.3"
+        "yunohost": ">= 4.3.0"
     },
     "multi_instance": true,
     "services": [
@@ -28,16 +28,14 @@
         "mysql"
     ],
     "arguments": {
-        "install" : [
+        "install": [
             {
                 "name": "domain",
-                "type": "domain",
-                "example": "example.com"
+                "type": "domain"
             },
             {
                 "name": "admin",
-                "type": "user",
-                "example": "johndoe"
+                "type": "user"
             },
             {
                 "name": "is_public",
@@ -46,8 +44,7 @@
             },
             {
                 "name": "password",
-                "type": "password",
-                "example": "Choose a password"
+                "type": "password"
             },
             {
                 "name": "single_user",
