@@ -100,7 +100,7 @@ fi
 ynh_script_progression --message="Making sure dedicated system user exists..."
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir=$final_path
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -147,7 +147,7 @@ ynh_script_progression --message="Updating a configuration file..."
 
 ynh_add_config --template="../conf/config.ini" --destination="$final_path/config.ini"
 
-chmod 400 "$final_path/config.ini"
+chmod 600 "$final_path/config.ini"
 chown $app:$app "$final_path/config.ini"
 
 #=================================================
