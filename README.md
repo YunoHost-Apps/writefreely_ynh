@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # WriteFreely for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely) ![](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely) ![Working status](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)  
 [![Install WriteFreely with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -21,14 +21,14 @@ Can be run as Single User Blog or Multi User Instance.
 
 Each User can be limited from 1 to unlimited blogs.
 
-**Shipped version:** 0.13.1~ynh2
+**Shipped version:** 0.13.1~ynh3
 
 **Demo:** https://write.as/new
 
 ## Screenshots
 
-![](./doc/screenshots/screenshots2.png)
-![](./doc/screenshots/screenshots1.png)
+![Screenshot of WriteFreely](./doc/screenshots/screenshots2.png)
+![Screenshot of WriteFreely](./doc/screenshots/screenshots1.png)
 
 ## Disclaimers / important information
 
@@ -41,21 +41,22 @@ Each User can be limited from 1 to unlimited blogs.
 
 ## Documentation and resources
 
-* Official app website: https://writefreely.org
-* Official user documentation: https://writefreely.org/start
-* Upstream app code repository: https://github.com/writeas/writefreely
-* YunoHost documentation for this app: https://yunohost.org/app_writefreely
-* Report a bug: https://github.com/YunoHost-Apps/writefreely_ynh/issues
+* Official app website: <https://writefreely.org>
+* Official user documentation: <https://writefreely.org/start>
+* Upstream app code repository: <https://github.com/writeas/writefreely>
+* YunoHost documentation for this app: <https://yunohost.org/app_writefreely>
+* Report a bug: <https://github.com/YunoHost-Apps/writefreely_ynh/issues>
 
 ## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/writefreely_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
-```
+
+``` bash
 sudo yunohost app install https://github.com/YunoHost-Apps/writefreely_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade writefreely -u https://github.com/YunoHost-Apps/writefreely_ynh/tree/testing --debug
 ```
 
-**More info regarding app packaging:** https://yunohost.org/packaging_apps
+**More info regarding app packaging:** <https://yunohost.org/packaging_apps>

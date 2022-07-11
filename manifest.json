@@ -6,7 +6,7 @@
         "en": "For starting a minimalist, federated blog or an entire community.",
         "fr": "Permet de créer un blog fédéré minimaliste ou une communauté entière."
     },
-    "version": "0.13.1~ynh2",
+    "version": "0.13.1~ynh3",
     "url": "https://writefreely.org",
     "upstream": {
         "license": "AGPL-3.0-or-later",
@@ -34,13 +34,13 @@
                 "type": "domain"
             },
             {
-                "name": "admin",
-                "type": "user"
-            },
-            {
                 "name": "is_public",
                 "type": "boolean",
                 "default": true
+            },
+            {
+                "name": "admin",
+                "type": "user"
             },
             {
                 "name": "password",
