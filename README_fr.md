@@ -5,15 +5,15 @@ It shall NOT be edited by hand.
 
 # WriteFreely pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)  
 [![Installer WriteFreely avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer WriteFreely rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer WriteFreely rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 WriteFreely is a beautifully pared-down blogging platform that's simple on the surface, yet powerful underneath.
 
@@ -21,14 +21,14 @@ Can be run as Single User Blog or Multi User Instance.
 
 Each User can be limited from 1 to unlimited blogs.
 
-**Version incluse :** 0.13.1~ynh3
+**Version incluse :** 0.13.2~ynh1
 
 **Démo :** https://write.as/new
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de WriteFreely](./doc/screenshots/screenshots2.png)
-![Capture d'écran de WriteFreely](./doc/screenshots/screenshots1.png)
+![Capture d’écran de WriteFreely](./doc/screenshots/screenshots2.png)
+![Capture d’écran de WriteFreely](./doc/screenshots/screenshots1.png)
 
 ## Avertissements / informations importantes
 
@@ -41,9 +41,9 @@ Each User can be limited from 1 to unlimited blogs.
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://writefreely.org>
+* Site officiel de l’app : <https://writefreely.org>
 * Documentation officielle utilisateur : <https://writefreely.org/start>
-* Dépôt de code officiel de l'app : <https://github.com/writeas/writefreely>
+* Dépôt de code officiel de l’app : <https://github.com/writeas/writefreely>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_writefreely>
 * Signaler un bug : <https://github.com/YunoHost-Apps/writefreely_ynh/issues>
 
@@ -59,4 +59,4 @@ ou
 sudo yunohost app upgrade writefreely -u https://github.com/YunoHost-Apps/writefreely_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
