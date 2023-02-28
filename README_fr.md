@@ -6,6 +6,7 @@ It shall NOT be edited by hand.
 # WriteFreely pour YunoHost
 
 [![Niveau d’intégration](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
+
 [![Installer WriteFreely avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 
 *[Read this readme in english.](./README.md)*
