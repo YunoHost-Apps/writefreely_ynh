@@ -29,7 +29,6 @@ Each User can be limited from 1 to unlimited blogs.
 ## Screenshots
 
 ![Screenshot of WriteFreely](./doc/screenshots/screenshots2.png)
-![Screenshot of WriteFreely](./doc/screenshots/screenshots1.png)
 
 ## Documentation and resources
 
