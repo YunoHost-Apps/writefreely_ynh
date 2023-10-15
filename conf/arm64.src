@@ -1,6 +1,0 @@
-SOURCE_URL=https://github.com/writefreely/writefreely/releases/download/v0.14.0/writefreely_0.14.0_linux_arm64.tar.gz
-SOURCE_SUM=4003591021efd5810e4f5637c967cf166be341e7998a8d6208842a8f659a4f8f
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=tar.gz
-SOURCE_IN_SUBDIR=true
-SOURCE_FILENAME=
