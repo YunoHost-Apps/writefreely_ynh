@@ -1,5 +1,5 @@
 [Unit]
-Description=Write Freely __APP__ Service
+Description=WriteFreely: minimalist federated blog
 After=network.target
 
 [Service]
