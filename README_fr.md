@@ -31,15 +31,6 @@ Each User can be limited from 1 to unlimited blogs.
 ![Capture d’écran de WriteFreely](./doc/screenshots/screenshots2.png)
 ![Capture d’écran de WriteFreely](./doc/screenshots/screenshots1.png)
 
-## Avertissements / informations importantes
-
-* **WriteFreely** require a dedicated **root domain**, eg. writefreely.domain.tld
-* i386 architectures not supported
-* No LDAP and no HTTP auth supported
-
-* If User Mode is configured Multiple users, the app be used by multiple users
-* Additionals parameters can be configured in Settings / Admin settings.
-
 ## Documentations et ressources
 
 * Site officiel de l’app : <https://writefreely.org>
