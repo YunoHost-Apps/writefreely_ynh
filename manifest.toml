@@ -2,8 +2,8 @@ packaging_format = 2
 
 id = "writefreely"
 name = "WriteFreely"
-description.en = "For starting a minimalist, federated blog or an entire community."
-description.fr = "Permet de créer un blog fédéré minimaliste ou une communauté entière."
+description.en = "For starting a minimalist, federated blog or an entire community"
+description.fr = "Permet de créer un blog fédéré minimaliste ou une communauté entière"
 
 version = "0.14.0~ynh1"
 
@@ -15,35 +15,29 @@ website = "https://writefreely.org"
 demo = "https://write.as/new"
 userdoc = "https://writefreely.org/start"
 code = "https://github.com/writeas/writefreely"
-cpe = "???" # FIXME: optional but recommended if relevant, this is meant to contain the Common Platform Enumeration, which is sort of a standard id for applications defined by the NIST. In particular, Yunohost may use this is in the future to easily track CVE (=security reports) related to apps. The CPE may be obtained by searching here: https://nvd.nist.gov/products/cpe/search. For example, for Nextcloud, the CPE is 'cpe:2.3:a:nextcloud:nextcloud' (no need to include the version number)
-fund = "???" # FIXME: optional but recommended (or remove if irrelevant / not applicable). This is meant to be an URL where people can financially support this app, especially when its development is based on volunteers and/or financed by its community. YunoHost may later advertise it in the webadmin.
 
 [integration]
-yunohost = ">= 4.3.0"
-architectures = "all" # FIXME: can be replaced by a list of supported archs using the dpkg --print-architecture nomenclature (amd64/i386/armhf/arm64), for example: ["amd64", "i386"]
+yunohost = ">= 11.2"
+architectures = ["arm64", "amd64", "armhf"]
 multi_instance = true
-ldap = "?" # FIXME: replace with true, false, or "not_relevant". Not to confuse with the "sso" key : the "ldap" key corresponds to wether or not a user *can* login on the app using its YunoHost credentials.
-sso = "?" # FIXME: replace with true, false, or "not_relevant". Not to confuse with the "ldap" key : the "sso" key corresponds to wether or not a user is *automatically logged-in* on the app when logged-in on the YunoHost portal.
-disk = "50M" # FIXME: replace with an **estimate** minimum disk requirement. e.g. 20M, 400M, 1G, ...
-ram.build = "50M" # FIXME: replace with an **estimate** minimum ram requirement. e.g. 50M, 400M, 1G, ...
-ram.runtime = "50M" # FIXME: replace with an **estimate** minimum ram requirement. e.g. 50M, 400M, 1G, ...
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
 
 [install]
     [install.domain]
-    # this is a generic question - ask strings are automatically handled by Yunohost's core
     type = "domain"
-    full_domain = true
 
     [install.init_main_permission]
     type = "group"
     default = "visitors"
 
     [install.admin]
-    # this is a generic question - ask strings are automatically handled by Yunohost's core
     type = "user"
 
     [install.password]
-    # this is a generic question - ask strings are automatically handled by Yunohost's core
     type = "password"
 
     [install.single_user]
@@ -59,20 +53,21 @@ ram.runtime = "50M" # FIXME: replace with an **estimate** minimum ram requiremen
         arm64.sha256 = "4003591021efd5810e4f5637c967cf166be341e7998a8d6208842a8f659a4f8f"
         amd64.url = "https://github.com/writefreely/writefreely/releases/download/v0.14.0/writefreely_0.14.0_linux_amd64.tar.gz"
         amd64.sha256 = "1138d6aed26d8bb859265f9dcea8a9d76c3baed481413a1aae55434e3acd3bc2"
-        armhf.url = "https://github.com/writeas/writefreely/releases/download/v0.13.1/writefreely_0.13.1_linux_arm7.tar.gz"
-        armhf.sha256 = "598be91fefbe34b5988c2447a008d410385e12c173e66a26c20fcbad0aaebad0"
-
-        [resources.sources.amhf]
-        url = "https://github.com/writefreely/writefreely/releases/download/v0.14.0/writefreely_0.14.0_linux_arm7.tar.gz"
-        sha256 = "669ca8d388d9ead2530474c2498e3e0ab87d122644be9d525e5d1a3c308c1c9b"
-
+        armhf.url = "https://github.com/writefreely/writefreely/releases/download/v0.14.0/writefreely_0.14.0_linux_arm7.tar.gz"
+        armhf.sha256 = "669ca8d388d9ead2530474c2498e3e0ab87d122644be9d525e5d1a3c308c1c9b"
 
     [resources.system_user]
 
     [resources.install_dir]
 
+    [resources.ports]
+
     [resources.permissions]
     main.url = "/"
+#REMOVEME? ynh_permission_create --permission="api" --url="/api" --allowed="visitors" --auth_header="false" --show_tile="false" --protected="true"
+
+    [resources.apt]
+    packages = "mariadb-server"
 
     [resources.database]
     type = "mysql"
