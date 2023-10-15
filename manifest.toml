@@ -64,7 +64,11 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
-#REMOVEME? ynh_permission_create --permission="api" --url="/api" --allowed="visitors" --auth_header="false" --show_tile="false" --protected="true"
+    api.url = "/api"
+    api.allowed= "visitors"
+    api.auth_header= false
+    api.show_tile= false
+    api.protected= true
 
     [resources.apt]
     packages = "mariadb-server"
