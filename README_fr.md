@@ -22,23 +22,13 @@ Can be run as Single User Blog or Multi User Instance.
 
 Each User can be limited from 1 to unlimited blogs.
 
-**Version incluse :** 0.14.0~ynh1
+**Version incluse :** 0.14.0~ynh2
 
 **Démo :** https://write.as/new
 
 ## Captures d’écran
 
 ![Capture d’écran de WriteFreely](./doc/screenshots/screenshots2.png)
-![Capture d’écran de WriteFreely](./doc/screenshots/screenshots1.png)
-
-## Avertissements / informations importantes
-
-* **WriteFreely** require a dedicated **root domain**, eg. writefreely.domain.tld
-* i386 architectures not supported
-* No LDAP and no HTTP auth supported
-
-* If User Mode is configured Multiple users, the app be used by multiple users
-* Additionals parameters can be configured in Settings / Admin settings.
 
 ## Documentations et ressources
 
