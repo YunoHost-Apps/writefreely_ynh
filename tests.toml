@@ -1,0 +1,15 @@
+test_format = 1.0
+
+[default]
+
+    # -------------------------------
+    # Default args to use for install
+    # -------------------------------
+    
+    args.single_user = true
+
+    # -------------------------------
+    # Commits to test upgrade from
+    # -------------------------------
+
+    test_upgrade_from.e30ec378dc703227fcfe542d19f35e2838192094.name = "Upgrade from 0.13.1"

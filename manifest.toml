@@ -1,0 +1,77 @@
+packaging_format = 2
+
+id = "writefreely"
+name = "WriteFreely"
+description.en = "For starting a minimalist, federated blog or an entire community"
+description.fr = "Permet de créer un blog fédéré minimaliste ou une communauté entière"
+
+version = "0.14.0~ynh1"
+
+maintainers = ["yalh76"]
+
+[upstream]
+license = "AGPL-3.0-or-later"
+website = "https://writefreely.org"
+demo = "https://write.as/new"
+userdoc = "https://writefreely.org/start"
+code = "https://github.com/writeas/writefreely"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = ["arm64", "amd64", "armhf"]
+multi_instance = true
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+    [install.admin]
+    type = "user"
+
+    [install.password]
+    type = "password"
+
+    [install.single_user]
+    ask.en = "Choose if you want a Single User Blog?"
+    ask.fr = "Souhaitez vous un blog pour un seul utilisateur ?"
+    type = "boolean"
+    default = true
+
+[resources]
+    [resources.sources]
+        [resources.sources.main]
+        arm64.url = "https://github.com/writefreely/writefreely/releases/download/v0.14.0/writefreely_0.14.0_linux_arm64.tar.gz"
+        arm64.sha256 = "4003591021efd5810e4f5637c967cf166be341e7998a8d6208842a8f659a4f8f"
+        amd64.url = "https://github.com/writefreely/writefreely/releases/download/v0.14.0/writefreely_0.14.0_linux_amd64.tar.gz"
+        amd64.sha256 = "1138d6aed26d8bb859265f9dcea8a9d76c3baed481413a1aae55434e3acd3bc2"
+        armhf.url = "https://github.com/writefreely/writefreely/releases/download/v0.14.0/writefreely_0.14.0_linux_arm7.tar.gz"
+        armhf.sha256 = "669ca8d388d9ead2530474c2498e3e0ab87d122644be9d525e5d1a3c308c1c9b"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.ports]
+
+    [resources.permissions]
+    main.url = "/"
+    api.url = "/api"
+    api.allowed= "visitors"
+    api.auth_header= false
+    api.show_tile= false
+    api.protected= true
+
+    [resources.apt]
+    packages = "mariadb-server"
+
+    [resources.database]
+    type = "mysql"
