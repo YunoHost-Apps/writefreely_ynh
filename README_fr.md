@@ -22,7 +22,7 @@ Can be run as Single User Blog or Multi User Instance.
 
 Each User can be limited from 1 to unlimited blogs.
 
-**Version incluse :** 0.14.0~ynh1
+**Version incluse :** 0.14.0~ynh2
 
 **Démo :** https://write.as/new
 
