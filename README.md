@@ -45,7 +45,7 @@ Each User can be limited from 1 to unlimited blogs.
 * Official app website: <https://writefreely.org>
 * Official user documentation: <https://writefreely.org/start>
 * Upstream app code repository: <https://github.com/writeas/writefreely>
-* YunoHost documentation for this app: <https://yunohost.org/app_writefreely>
+* YunoHost Store: <https://apps.yunohost.org/app/writefreely>
 * Report a bug: <https://github.com/YunoHost-Apps/writefreely_ynh/issues>
 
 ## Developer info
