@@ -60,7 +60,6 @@ ram.runtime = "50M"
         autoupdate.asset.arm64 = "^writefreely_.*_linux_arm64.tar.gz$"
         autoupdate.asset.amd64 = "^writefreely_.*_linux_amd64.tar.gz$"
         autoupdate.asset.armhf = "^writefreely_.*_linux_arm7.tar.gz$"
-
     [resources.system_user]
 
     [resources.install_dir]
