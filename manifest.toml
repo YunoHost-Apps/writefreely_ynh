@@ -56,6 +56,11 @@ ram.runtime = "50M"
         armhf.url = "https://github.com/writefreely/writefreely/releases/download/v0.14.0/writefreely_0.14.0_linux_arm7.tar.gz"
         armhf.sha256 = "669ca8d388d9ead2530474c2498e3e0ab87d122644be9d525e5d1a3c308c1c9b"
 
+        autoupdate.strategy = "latest_github_release"
+        autoupdate.asset.arm64 = "^writefreely_.*_linux_arm64.tar.gz$"
+        autoupdate.asset.amd64 = "^writefreely_.*_linux_amd64.tar.gz$"
+        autoupdate.asset.armhf = "^writefreely_.*_linux_arm7.tar.gz$"
+
     [resources.system_user]
 
     [resources.install_dir]
