@@ -17,7 +17,8 @@ userdoc = "https://writefreely.org/start"
 code = "https://github.com/writeas/writefreely"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.18"
+helpers_version = "2.1"
 architectures = ["arm64", "amd64", "armhf"]
 multi_instance = true
 ldap = false
@@ -64,6 +65,7 @@ ram.runtime = "50M"
     [resources.system_user]
 
     [resources.install_dir]
+    group = "www-data:r-x"
 
     [resources.ports]
 
