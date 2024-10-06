@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # WriteFreely for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely) ![Working status](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
+[![Integration level](https://dash.yunohost.org/integration/writefreely.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/) ![Working status](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
 
 [![Install WriteFreely with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 
@@ -22,7 +22,7 @@ Can be run as Single User Blog or Multi User Instance.
 
 Each User can be limited from 1 to unlimited blogs.
 
-**Shipped version:** 0.15.0~ynh1
+**Shipped version:** 0.15.1~ynh1
 
 **Demo:** <https://write.as/new>
 

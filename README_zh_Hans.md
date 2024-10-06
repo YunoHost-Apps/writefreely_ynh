@@ -5,7 +5,7 @@
 
 # YunoHost 上的 WriteFreely
 
-[![集成程度](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely) ![工作状态](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/writefreely.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
 
 [![使用 YunoHost 安装 WriteFreely](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 
@@ -22,7 +22,7 @@ Can be run as Single User Blog or Multi User Instance.
 
 Each User can be limited from 1 to unlimited blogs.
 
-**分发版本：** 0.15.0~ynh1
+**分发版本：** 0.15.1~ynh1
 
 **演示：** <https://write.as/new>
 
