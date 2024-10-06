@@ -7,7 +7,7 @@ description.fr = "Permet de créer un blog fédéré minimaliste ou une communau
 
 version = "0.15.0~ynh1"
 
-maintainers = ["yalh76"]
+maintainers = []
 
 [upstream]
 license = "AGPL-3.0-or-later"
@@ -17,7 +17,7 @@ userdoc = "https://writefreely.org/start"
 code = "https://github.com/writeas/writefreely"
 
 [integration]
-yunohost = ">= 11.2.18"
+yunohost = ">= 11.2.30"
 helpers_version = "2.1"
 architectures = ["arm64", "amd64", "armhf"]
 multi_instance = true
