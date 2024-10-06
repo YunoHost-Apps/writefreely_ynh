@@ -5,7 +5,7 @@ No se debe editar a mano.
 
 # WriteFreely para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/writefreely.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
 
 [![Instalar WriteFreely con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 
@@ -22,7 +22,7 @@ Can be run as Single User Blog or Multi User Instance.
 
 Each User can be limited from 1 to unlimited blogs.
 
-**Versión actual:** 0.15.0~ynh1
+**Versión actual:** 0.15.1~ynh1
 
 **Demo:** <https://write.as/new>
 
@@ -40,7 +40,7 @@ Each User can be limited from 1 to unlimited blogs.
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/writefreely_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/writefreely_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 

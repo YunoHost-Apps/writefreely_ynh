@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # WriteFreely YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/writefreely.svg)](https://dash.yunohost.org/appci/app/writefreely) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/writefreely.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
 
 [![Instalatu WriteFreely YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 
@@ -22,7 +22,7 @@ Can be run as Single User Blog or Multi User Instance.
 
 Each User can be limited from 1 to unlimited blogs.
 
-**Paketatutako bertsioa:** 0.15.0~ynh1
+**Paketatutako bertsioa:** 0.15.1~ynh1
 
 **Demoa:** <https://write.as/new>
 
