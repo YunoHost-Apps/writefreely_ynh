@@ -5,7 +5,9 @@ It shall NOT be edited by hand.
 
 # WriteFreely for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/writefreely.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/) ![Working status](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
+[![Integration level](https://apps.yunohost.org/badge/integration/writefreely)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
+![Working status](https://apps.yunohost.org/badge/state/writefreely)
+![Maintenance status](https://apps.yunohost.org/badge/maintained/writefreely)
 
 [![Install WriteFreely with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 

@@ -5,7 +5,9 @@
 
 # WriteFreely для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/writefreely.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/writefreely)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
+![Состояние работы](https://apps.yunohost.org/badge/state/writefreely)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/writefreely)
 
 [![Установите WriteFreely с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 

@@ -5,7 +5,9 @@
 
 # YunoHost 上的 WriteFreely
 
-[![集成程度](https://dash.yunohost.org/integration/writefreely.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
+[![集成程度](https://apps.yunohost.org/badge/integration/writefreely)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
+![工作状态](https://apps.yunohost.org/badge/state/writefreely)
+![维护状态](https://apps.yunohost.org/badge/maintained/writefreely)
 
 [![使用 YunoHost 安装 WriteFreely](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 

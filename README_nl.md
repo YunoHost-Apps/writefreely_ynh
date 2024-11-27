@@ -5,7 +5,9 @@ Hij mag NIET handmatig aangepast worden.
 
 # WriteFreely voor Yunohost
 
-[![Integratieniveau](https://dash.yunohost.org/integration/writefreely.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/) ![Mate van functioneren](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Onderhoudsstatus](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
+[![Integratieniveau](https://apps.yunohost.org/badge/integration/writefreely)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
+![Mate van functioneren](https://apps.yunohost.org/badge/state/writefreely)
+![Onderhoudsstatus](https://apps.yunohost.org/badge/maintained/writefreely)
 
 [![WriteFreely met Yunohost installeren](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 

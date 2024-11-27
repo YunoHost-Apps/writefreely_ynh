@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # WriteFreely YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/writefreely.svg)](https://ci-apps.yunohost.org/ci/apps/writefreely/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/writefreely.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/writefreely.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/writefreely)](https://ci-apps.yunohost.org/ci/apps/writefreely/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/writefreely)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/writefreely)
 
 [![Instalatu WriteFreely YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=writefreely)
 
