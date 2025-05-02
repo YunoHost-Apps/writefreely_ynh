@@ -5,7 +5,7 @@ name = "WriteFreely"
 description.en = "For starting a minimalist, federated blog or an entire community"
 description.fr = "Permet de créer un blog fédéré minimaliste ou une communauté entière"
 
-version = "0.15.1~ynh1"
+version = "0.15.1~ynh2"
 
 maintainers = []
 
