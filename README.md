@@ -19,6 +19,7 @@ For starting a minimalist, federated blog or an entire community
 <a href="https://github.com/YunoHost-Apps/writefreely_ynh/issues"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_report_an_issue.svg"/></a>
 </div>
 
+
 ## Screenshots
 ![Screenshot of WriteFreely](./doc/screenshots/screenshots2.png)
 
