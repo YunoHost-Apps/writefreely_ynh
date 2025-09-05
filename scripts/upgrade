@@ -42,15 +42,6 @@ pushd $install_dir
 popd
 
 #=================================================
-# UPDATE A CONFIG FILE
-#=================================================
-ynh_script_progression "Updating configuration..."
-
-ynh_config_add --template="config.ini" --destination="$install_dir/config.ini"
-
-chmod 600 "$install_dir/config.ini"
-
-#=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
