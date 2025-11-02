@@ -5,9 +5,9 @@ name = "WriteFreely"
 description.en = "For starting a minimalist, federated blog or an entire community"
 description.fr = "Permet de créer un blog fédéré minimaliste ou une communauté entière"
 
-version = "0.15.0~ynh1"
+version = "0.16.0~ynh1"
 
-maintainers = ["yalh76"]
+maintainers = []
 
 [upstream]
 license = "AGPL-3.0-or-later"
@@ -17,11 +17,14 @@ userdoc = "https://writefreely.org/start"
 code = "https://github.com/writeas/writefreely"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 12.0.9"
+helpers_version = "2.1"
 architectures = ["arm64", "amd64", "armhf"]
 multi_instance = true
+
 ldap = false
 sso = false
+
 disk = "50M"
 ram.build = "50M"
 ram.runtime = "50M"
@@ -49,12 +52,12 @@ ram.runtime = "50M"
 [resources]
     [resources.sources]
         [resources.sources.main]
-        arm64.url = "https://github.com/writefreely/writefreely/releases/download/v0.15.0/writefreely_0.15.0_linux_arm64.tar.gz"
-        arm64.sha256 = "f19bef1d6457d9a37a0443d12dcf62fe58297aabe1daca3a85b5482b56904feb"
-        amd64.url = "https://github.com/writefreely/writefreely/releases/download/v0.15.0/writefreely_0.15.0_linux_amd64.tar.gz"
-        amd64.sha256 = "1bda54b9b1759f3112981692540cd622300b3da10961c9d8448fb0654f307232"
-        armhf.url = "https://github.com/writefreely/writefreely/releases/download/v0.15.0/writefreely_0.15.0_linux_arm7.tar.gz"
-        armhf.sha256 = "95363045295b1f2301d9d9f8dcaad4b119faed520bbeaed7d4a2034e873d1eda"
+        arm64.url = "https://github.com/writefreely/writefreely/releases/download/v0.16.0/writefreely_0.16.0_linux_arm64.tar.gz"
+        arm64.sha256 = "544705c523deead7e2719c233326c17c9baf313daa2737aa82dfda5d783f9b33"
+        amd64.url = "https://github.com/writefreely/writefreely/releases/download/v0.16.0/writefreely_0.16.0_linux_amd64.tar.gz"
+        amd64.sha256 = "4626c2998f4cdad3390452f0e18950ccd0a2d3b6e3595e45a40db6df0a2defa5"
+        armhf.url = "https://github.com/writefreely/writefreely/releases/download/v0.16.0/writefreely_0.16.0_linux_arm7.tar.gz"
+        armhf.sha256 = "8f6f381585f38007552e3f913bb6f7d5d83392759771a5caa20f66de3ef510e9"
 
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset.arm64 = "^writefreely_.*_linux_arm64.tar.gz$"
@@ -62,8 +65,10 @@ ram.runtime = "50M"
         autoupdate.asset.armhf = "^writefreely_.*_linux_arm7.tar.gz$"
 
     [resources.system_user]
+    allow_email = true
 
     [resources.install_dir]
+    group = "www-data:r-x"
 
     [resources.ports]
 
