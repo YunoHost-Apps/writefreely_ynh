@@ -65,6 +65,7 @@ ram.runtime = "50M"
         autoupdate.asset.armhf = "^writefreely_.*_linux_arm7.tar.gz$"
 
     [resources.system_user]
+    allow_email = true
 
     [resources.install_dir]
     group = "www-data:r-x"
