@@ -14,34 +14,42 @@ fi
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
+
 ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
 
 #=================================================
-# NGINX CONFIGURATION
+# SET SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression "Configuring NGINX web server..."
+
+ynh_script_progression "Configuring web server to serve $app on $domain..."
 
 ynh_config_add_nginx
 
+ynh_script_progression "Configuring $app system service..."
+
 ynh_config_add_systemd
+
+ynh_script_progression "Adding $app service to Yunohost admin panel..."
 
 yunohost service add $app --description="WriteFreely daemon" --log="/var/log/$app/$app.log"
 
 #=================================================
-# ADD A CONFIGURATION
+# SET WRITEFREELY CONFIGURATION
 #=================================================
-ynh_script_progression "Adding $app's configuration..."
+
+ynh_script_progression "Adding $app configuration..."
 
 ynh_config_add --template="config.ini" --destination="$install_dir/config.ini"
 
 chmod 600 "$install_dir/config.ini"
 
 #=================================================
-# MAKE SETUP
+# INITIALIZE WRITEFREELY
 #=================================================
-ynh_script_progression "Making setup..."
+
+ynh_script_progression "Initializing $app..."
 
 pushd $install_dir
 	ynh_exec_as_app ./writefreely --init-db
@@ -52,7 +60,8 @@ popd
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Starting $app's systemd service..."
+
+ynh_script_progression "Starting $app system service..."
 
 ynh_systemctl --service=$app --action="start" --log_path="systemd" --wait_until="Serving on"
 
@@ -60,4 +69,4 @@ ynh_systemctl --service=$app --action="start" --log_path="systemd" --wait_until=
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression "Installation of $app completed"
+ynh_script_progression "Installation complete. Please report any issues you experience at https://github.com/YunoHost-Apps/writefreely_ynh/issues"

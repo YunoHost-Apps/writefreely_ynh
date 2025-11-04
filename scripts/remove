@@ -3,16 +3,23 @@
 
 source /usr/share/yunohost/helpers
 
+ynh_script_progression "Removing $app install directory..."
+
 #=================================================
-# REMOVE SYSTEM CONFIGURATIONS
+# REMOVE SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression "Removing system configurations related to $app..."
+
+ynh_script_progression "Removing $app from Yunohost admin panel..."
 
 if ynh_hide_warnings yunohost service status $app >/dev/null; then
 	yunohost service remove $app
 fi
 
+ynh_script_progression "Removing $app system service..."
+
 ynh_config_remove_systemd
+
+ynh_script_progression "Backing up $app web server files..."
 
 ynh_config_remove_nginx
 
@@ -20,4 +27,4 @@ ynh_config_remove_nginx
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression "Removal of $app completed"
+ynh_script_progression "Removal complete."

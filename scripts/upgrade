@@ -6,21 +6,24 @@ source /usr/share/yunohost/helpers
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Stopping $app's systemd service..."
+
+ynh_script_progression "Stopping $app system service..."
 
 ynh_systemctl --service=$app --action="stop" --log_path="systemd"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression "Upgrading source files..."
+
+ynh_script_progression "Updating source files..."
 
 ynh_setup_source --dest_dir="$install_dir" --full_replace=1 --keep=config.ini
 
 #=================================================
-# NGINX CONFIGURATION
+# UPDATE SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression "Upgrading NGINX web server configuration..."
+
+ynh_script_progression "Updating web server and system service configuration..."
 
 ynh_config_add_nginx
 
@@ -31,7 +34,8 @@ yunohost service add $app --description="WriteFreely daemon" --log="/var/log/$ap
 #=================================================
 # MAKE THE UPGRADE
 #=================================================
-ynh_script_progression "Making the upgrade..."
+
+ynh_script_progression "Upgrading $app..."
 
 pushd $install_dir
 	ynh_mysql_db_shell <<< "ALTER DATABASE $db_name CHARACTER SET latin1 COLLATE latin1_swedish_ci;"
@@ -44,7 +48,8 @@ popd
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Starting $app's systemd service..."
+
+ynh_script_progression "Starting $app system service..."
 
 ynh_systemctl --service=$app --action="start" --log_path="systemd" --wait_until="Serving on"
 
@@ -52,4 +57,4 @@ ynh_systemctl --service=$app --action="start" --log_path="systemd" --wait_until=
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression "Upgrade of $app completed"
+ynh_script_progression "Upgrade complete."
