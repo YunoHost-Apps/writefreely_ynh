@@ -4,23 +4,26 @@
 source /usr/share/yunohost/helpers
 
 #=================================================
-# RESTORE THE APP MAIN DIR
+# RESTORE WRITEFREELY INSTALL DIRECTORY
 #=================================================
-ynh_script_progression "Restoring the app main directory..."
+
+ynh_script_progression "Restoring $app install directory ($install_dir)..."
 
 ynh_restore "$install_dir"
 
 #=================================================
-# RESTORE THE MYSQL DATABASE
+# RESTORE MYSQL DATABASE
 #=================================================
-ynh_script_progression "Restoring the MySQL database..."
+
+ynh_script_progression "Restoring database..."
 
 ynh_mysql_db_shell < ./db.sql
 
 #=================================================
-# RESTORE SYSTEMD
+# RESTORE SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression "Restoring $app's systemd service..."
+
+ynh_script_progression "Restoring web server and system service files..."
 
 ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
 
@@ -32,9 +35,16 @@ yunohost service add $app --description="WriteFreely daemon" --log="/var/log/$ap
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
+
 ynh_script_progression "Starting $app's systemd service..."
 
 ynh_systemctl --service=$app --action="start" --log_path="systemd" --wait_until="Serving on"
+
+#=================================================
+# RELOAD NGINX
+#=================================================
+
+ynh_script_progression "Reloading web server..."
 
 ynh_systemctl --service=nginx --action=reload
 
@@ -42,4 +52,4 @@ ynh_systemctl --service=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression "Restoration completed for $app"
+ynh_script_progression "Restoration complete."

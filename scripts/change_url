@@ -6,21 +6,24 @@ source /usr/share/yunohost/helpers
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Stopping $app's systemd service..."
+
+ynh_script_progression "Stopping $app system service..."
 
 ynh_systemctl --service=$app --action="stop" --log_path="systemd"
 
 #=================================================
-# MODIFY URL IN NGINX CONF
+# RECONFIGURE NGINX
 #=================================================
-ynh_script_progression "Updating NGINX web server configuration..."
+
+ynh_script_progression "Updating web server to serve $app on $new_domain..."
 
 ynh_config_change_url_nginx
 
 #=================================================
-# MODIFY A CONFIG FILE
+# RECONFIGURE WRITEFREELY
 #=================================================
-ynh_script_progression "Updating configuration..."
+
+ynh_script_progression "Updating $app configuration..."
 
 ynh_backup_if_checksum_is_different "$install_dir/config.ini"
 
@@ -32,7 +35,8 @@ ynh_store_file_checksum "$install_dir/config.ini"
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Starting $app's systemd service..."
+
+ynh_script_progression "Starting $app system service..."
 
 ynh_systemctl --service=$app --action="start" --log_path="systemd" --wait_until="Serving on"
 
@@ -40,4 +44,4 @@ ynh_systemctl --service=$app --action="start" --log_path="systemd" --wait_until=
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression "Change of URL completed for $app"
+ynh_script_progression "URL change complete."
