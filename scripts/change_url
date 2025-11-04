@@ -26,7 +26,7 @@ ynh_backup_if_checksum_is_different "$install_dir/config.ini"
 
 #ynh_replace --match="host                  =.*" --replace="host                  = https://$new_domain" --file="$install_dir/config.ini"
 
-ynh_write_var_in_file --file="$install_dir/config.ini" --key="host" --value="https://$new_domain"
+ynh_write_var_in_file --file="$install_dir/config.ini" --key="host" --value="https://$new_domain" --after="site_description"
 
 # Recalculate and store the checksum of the file for the next upgrade.
 ynh_store_file_checksum "$install_dir/config.ini"
