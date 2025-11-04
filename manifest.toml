@@ -7,7 +7,7 @@ description.fr = "Permet de créer un blog fédéré minimaliste ou une communau
 
 version = "0.16.0~ynh2"
 
-maintainers = [trendless]
+maintainers = ["trendless"]
 
 [upstream]
 license = "AGPL-3.0-or-later"
