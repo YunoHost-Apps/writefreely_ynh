@@ -5,9 +5,9 @@ name = "WriteFreely"
 description.en = "For starting a minimalist, federated blog or an entire community"
 description.fr = "Permet de créer un blog fédéré minimaliste ou une communauté entière"
 
-version = "0.16.0~ynh1"
+version = "0.16.0~ynh2"
 
-maintainers = []
+maintainers = ["trendless"]
 
 [upstream]
 license = "AGPL-3.0-or-later"
@@ -26,8 +26,8 @@ ldap = false
 sso = false
 
 disk = "50M"
-ram.build = "50M"
-ram.runtime = "50M"
+ram.build = "150M"
+ram.runtime = "100M"
 
 [install]
     [install.domain]
@@ -65,6 +65,7 @@ ram.runtime = "50M"
         autoupdate.asset.armhf = "^writefreely_.*_linux_arm7.tar.gz$"
 
     [resources.system_user]
+    allow_email = true
 
     [resources.install_dir]
     group = "www-data:r-x"
