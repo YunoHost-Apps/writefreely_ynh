@@ -24,7 +24,7 @@ ynh_setup_source --dest_dir="$install_dir" --full_replace=1 --keep=config.ini
 #=================================================
 
 if ynh_app_upgrading_from_version_before_or_equal_to 0.16.0~ynh2; then
-	ynh_script_progression "getting smtp variables..."
+	ynh_script_progression "checking smtp config..."
 	smtp_host=$(ynh_read_var_in_file --file=$install_dir/config.ini --key=smtp_host)
 	smtp_port=$(ynh_read_var_in_file --file=$install_dir/config.ini --key=smtp_port)
 	smtp_enable_start_tls=$(ynh_read_var_in_file --file=$install_dir/config.ini --key=smtp_enable_start_tls)
