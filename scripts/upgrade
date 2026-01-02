@@ -28,9 +28,13 @@ if ynh_app_upgrading_from_version_before_or_equal_to 0.16.0~ynh2; then
 	smtp_host=$(ynh_read_var_in_file --file=$install_dir/config.ini --key=smtp_host)
 	smtp_port=$(ynh_read_var_in_file --file=$install_dir/config.ini --key=smtp_port)
 	smtp_enable_start_tls=$(ynh_read_var_in_file --file=$install_dir/config.ini --key=smtp_enable_start_tls)
-	if $smtp_enable_start_tls=true && $smtp_port=25 && $smtp_host=127.0.0.1; then
-		ynh_script_progression "setting starttls false..."
-		ynh_write_var_in_file --file=$install_dir/config.ini  --key=smtp_enable_start_tls --value=false
+	if $smtp_enable_start_tls=true; then
+		if $smtp_port=25; then
+			if $smtp_host=127.0.0.1; then
+				ynh_script_progression "setting starttls false..."
+				ynh_write_var_in_file --file=$install_dir/config.ini  --key=smtp_enable_start_tls --value=false
+			fi
+		fi
 	fi
 fi
 
