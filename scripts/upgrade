@@ -20,6 +20,21 @@ ynh_script_progression "Updating source files..."
 ynh_setup_source --dest_dir="$install_dir" --full_replace=1 --keep=config.ini
 
 #=================================================
+# ADJUST CONFIG.INI SMTP_ENABLE_START_TLS VALUE
+#=================================================
+
+if ynh_app_upgrading_from_version_before_or_equal_to 0.16.0~ynh2; then
+	ynh_script_progression "checking smtp config..."
+	smtp_host=$(ynh_read_var_in_file --file=$install_dir/config.ini --key=smtp_host)
+	smtp_port=$(ynh_read_var_in_file --file=$install_dir/config.ini --key=smtp_port)
+	smtp_enable_start_tls=$(ynh_read_var_in_file --file=$install_dir/config.ini --key=smtp_enable_start_tls)
+	if [[ "$smtp_enable_start_tls" == "true"  &&  "$smtp_port" == "25" && "$smtp_host" == "127.0.0.1" ]]; then
+		ynh_script_progression "setting starttls false..."
+		ynh_write_var_in_file --file=$install_dir/config.ini  --key=smtp_enable_start_tls --value=false
+	fi
+fi
+
+#=================================================
 # UPDATE SYSTEM CONFIGURATION
 #=================================================
 
@@ -32,7 +47,7 @@ ynh_config_add_systemd
 yunohost service add $app --description="WriteFreely daemon" --log="/var/log/$app/$app.log"
 
 #=================================================
-# MAKE THE UPGRADE
+# UPGRADE APP
 #=================================================
 
 ynh_script_progression "Upgrading $app..."
