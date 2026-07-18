@@ -12,6 +12,13 @@ if ynh_in_ci_tests; then
 fi
 
 #=================================================
+# VALIDATE PASSWORD
+#=================================================
+if [[ "$password" == *":"* ]]; then
+    ynh_die "Installation aborted; admin password cannot contain a colon (:). Please try the installation again with a different password."
+fi
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 

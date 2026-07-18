@@ -5,7 +5,7 @@ name = "WriteFreely"
 description.en = "For starting a minimalist, federated blog or an entire community"
 description.fr = "Permet de créer un blog fédéré minimaliste ou une communauté entière"
 
-version = "0.16.0~ynh3"
+version = "0.17.0~ynh1"
 
 maintainers = ["trendless"]
 
@@ -17,7 +17,7 @@ userdoc = "https://writefreely.org/start"
 code = "https://github.com/writeas/writefreely"
 
 [integration]
-yunohost = ">= 12.0.9"
+yunohost = ">= 12.1.38"
 helpers_version = "2.1"
 architectures = ["arm64", "amd64", "armhf"]
 multi_instance = true
@@ -52,12 +52,12 @@ ram.runtime = "100M"
 [resources]
     [resources.sources]
         [resources.sources.main]
-        arm64.url = "https://github.com/writefreely/writefreely/releases/download/v0.16.0/writefreely_0.16.0_linux_arm64.tar.gz"
-        arm64.sha256 = "544705c523deead7e2719c233326c17c9baf313daa2737aa82dfda5d783f9b33"
-        amd64.url = "https://github.com/writefreely/writefreely/releases/download/v0.16.0/writefreely_0.16.0_linux_amd64.tar.gz"
-        amd64.sha256 = "4626c2998f4cdad3390452f0e18950ccd0a2d3b6e3595e45a40db6df0a2defa5"
-        armhf.url = "https://github.com/writefreely/writefreely/releases/download/v0.16.0/writefreely_0.16.0_linux_arm7.tar.gz"
-        armhf.sha256 = "8f6f381585f38007552e3f913bb6f7d5d83392759771a5caa20f66de3ef510e9"
+        arm64.url = "https://github.com/writefreely/writefreely/releases/download/v0.17.0/writefreely_0.17.0_linux_arm64.tar.gz"
+        arm64.sha256 = "274e8fe91ed868539bc9824c449a3b3f3b7592e8d91e9e077e0f0faeeacf4789"
+        amd64.url = "https://github.com/writefreely/writefreely/releases/download/v0.17.0/writefreely_0.17.0_linux_amd64.tar.gz"
+        amd64.sha256 = "5e0caeabb889eb1c0c6c00cdf4fe67e498b3045c64e17374113ab21f7e1fc8a2"
+        armhf.url = "https://github.com/writefreely/writefreely/releases/download/v0.17.0/writefreely_0.17.0_linux_arm7.tar.gz"
+        armhf.sha256 = "93d7e563930dbf04613a75af005e6eff54383986e013a3b438eb849de531cabd"
 
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset.arm64 = "^writefreely_.*_linux_arm64.tar.gz$"
