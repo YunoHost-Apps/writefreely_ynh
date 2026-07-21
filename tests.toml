@@ -13,3 +13,4 @@ test_format = 1.0
     # -------------------------------
 
     test_upgrade_from.acf26fb.name = "Upgrade from 0.16.0~ynh3"
+    test_upgrade_from.cef1d17.name = "Upgrade from 0.17.0~ynh1"
