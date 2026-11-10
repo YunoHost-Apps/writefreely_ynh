@@ -5,7 +5,7 @@ name = "WriteFreely"
 description.en = "For starting a minimalist, federated blog or an entire community"
 description.fr = "Permet de créer un blog fédéré minimaliste ou une communauté entière"
 
-version = "0.17.2~ynh1"
+version = "0.17.3~ynh1"
 
 maintainers = ["trendless"]
 
@@ -52,12 +52,12 @@ ram.runtime = "100M"
 [resources]
     [resources.sources]
         [resources.sources.main]
-        arm64.url = "https://github.com/writefreely/writefreely/releases/download/v0.17.2/writefreely_0.17.2_linux_arm64.tar.gz"
-        arm64.sha256 = "3726ba87cae1b2b8f646bb7485bdb23c775747493fc6b036cc5a45872e8dadcf"
-        amd64.url = "https://github.com/writefreely/writefreely/releases/download/v0.17.2/writefreely_0.17.2_linux_amd64.tar.gz"
-        amd64.sha256 = "332efcf09236a8ca5ffd91379c00d96a6f59ac52812d792cfcf6ee49a67dd3d9"
-        armhf.url = "https://github.com/writefreely/writefreely/releases/download/v0.17.2/writefreely_0.17.2_linux_arm7.tar.gz"
-        armhf.sha256 = "d3359804de232ad621a972caf7446a4b67a08c7412d6ddca10ba105f9d60542f"
+        arm64.url = "https://github.com/writefreely/writefreely/releases/download/v0.17.3/writefreely_0.17.3_linux_arm64.tar.gz"
+        arm64.sha256 = "0e6a833dee49e107cfc97c630749140bcce82b46bc6040ba947d4a61fcc02ecf"
+        amd64.url = "https://github.com/writefreely/writefreely/releases/download/v0.17.3/writefreely_0.17.3_linux_amd64.tar.gz"
+        amd64.sha256 = "207d1e4b7f8629c6b45c1da00b37ada910e28f1331ecce60dd82cb2ec78cf8b1"
+        armhf.url = "https://github.com/writefreely/writefreely/releases/download/v0.17.3/writefreely_0.17.3_linux_arm7.tar.gz"
+        armhf.sha256 = "b770fc743599ca4863a381c93713fb7c9cb7805d665792c16b6eef09179f431e"
 
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset.arm64 = "^writefreely_.*_linux_arm64.tar.gz$"
